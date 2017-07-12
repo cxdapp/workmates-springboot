@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zn-CN" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<script>
+    var cp = pageContext.request.contextPath;
+</script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <title>index</title>
+    <style>
+        .row div{
+            background-color: #3e8f3e;
+            margin-top: 100px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid" id="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="form-group">
+                <img v-bind:src="imgsrc">
+                <label for="a">
+                <input id="a" class="form-control" placeholder="请输入" v-model="zipCode">
+                </label><br>
+                <span style="color: darkgrey">{{zipCity}}</span><br>
+                <button type="button" v-on:click="downloadimg" class="btn btn-primary">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/vue.js"></script>
+<script src="../js/jquery-1.12.3.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+<script>
+    new Vue({
+        el: '#container',
+        data: {
+            zipCode:'',
+            zipCity:'',
+            imgsrc:''
+        },
+        watch:{
+            zipCode: function () {
+                this.zipCity = '';
+//                if(this.zipCode.length==5) {
+//                    this.lookupZipCity()
+                    this.lookupBook();
+//                }
+            }
+        },
+        methods:{
+            lookupZipCity: _.debounce(
+                function() {
+                    var app = this;
+                    this.zipCity = "搜索中……";
+                    axios.get('http://ziptasticapi.com/'+app.zipCode)
+                        .then(function (response) {
+                            app.zipCity = response.data.city + "," + response.data.state;
+                        })
+                        .catch(function (error) {
+                            app.zipCity = "未找到";
+                        })
+                },500
+            ),
+            lookupBook: _.debounce(
+                function () {
+                    var app = this;
+                    this.zipCity = "搜索书目中……";
+                    axios.get('http://localhost:8080/bookname/'+app.zipCode)
+                        .then(function (response) {
+                            console.log(response);
+                            app.zipCity = response.data.name + " " + response.data.lastName;
+                        })
+                        .catch(function (error) {
+                            app.zipCity = "";
+                        })
+                },500
+            ),
+            downloadimg: function () {
+                axios({
+                    method: 'get',
+                    url:'http://bit.ly/2mTM3nY',
+                    responseType:'stream'
+                }).then(function (res) {
+                    res.data.pipe(fs.createWriteStream('wow.jpg'))
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>
