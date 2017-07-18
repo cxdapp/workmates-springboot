@@ -20,7 +20,9 @@ public class UserServiceImple implements UserService {
 
     @Override
     public UserInfo getUserByNameAndPassword(String username, String password) {
-        return userRepository.findUserInfoByUsernameAndPassword(username,password);
+        List<UserInfo> userInfoList = userRepository.findAll();
+//        userRepository.findUserInfosBySex(sex);
+        return userRepository.findUserInfoByUsernameAndPassword(username, password);
     }
 
     @Override
