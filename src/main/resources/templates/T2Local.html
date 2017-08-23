@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Dashboard | Workmates</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="description" content=""/>
+    <meta name="keywords" content="workmates,work"/>
+    <meta name="author" content="chenxd"/>
+    <script src="../static/js/vue.js"
+            th:src="@{/webjars/vue/2.1.3/vue.js}"
+    ></script>
+    <script src="../static/js/axios.min.js"
+            th:src="@{/webjars/axios/0.16.1/dist/axios.js}"
+    ></script>
+    <!-- Base Css Files -->
+    <link href="../static/assets/libs/jqueryui/ui-lightness/jquery-ui-1.10.4.custom.min.css"
+          th:href="@{~/assets/libs/jqueryui/ui-lightness/jquery-ui-1.10.4.custom.min.css}"
+          rel="stylesheet" />
+    <link href="../static/assets/libs/bootstrap/css/bootstrap.min.css"
+          th:href="@{~/assets/libs/bootstrap/css/bootstrap.min.css}"
+          rel="stylesheet" />
+    <link href="../static/assets/libs/font-awesome/css/font-awesome.min.css"
+          th:href="@{~/assets/libs/font-awesome/css/font-awesome.min.css}"
+          rel="stylesheet" />
+    <link href="../static/assets/libs/fontello/css/fontello.css"
+          th:href="@{~/assets/libs/fontello/css/fontello.css}"
+          rel="stylesheet" />
+    <link href="../static/assets/libs/animate-css/animate.min.css"
+          th:href="@{~/assets/libs/animate-css/animate.min.css}"
+          rel="stylesheet" />
+    <link href="../static/assets/libs/nifty-modal/css/component.css"
+          th:href="@{~/assets/libs/nifty-modal/css/component.css}"
+          rel="stylesheet" />
+    <link href="../static/assets/libs/magnific-popup/magnific-popup.css"
+          th:href="@{~/assets/libs/magnific-popup/magnific-popup.css}"
+          rel="stylesheet" />
+    <link href="../static/assets/libs/ios7-switch/ios7-switch.css"
+          th:href="@{~/assets/libs/ios7-switch/ios7-switch.css}"
+          rel="stylesheet" />
+    <link href="../static/assets/libs/pace/pace.css"
+          th:href="@{~/assets/libs/pace/pace.css}"
+          rel="stylesheet" />
+    <link href="../static/assets/libs/sortable/sortable-theme-bootstrap.css"
+          th:href="@{~/assets/libs/sortable/sortable-theme-bootstrap.css}"
+          rel="stylesheet" />
+    <link href="../static/assets/libs/bootstrap-datepicker/css/datepicker.css"
+          th:href="@{~/assets/libs/bootstrap-datepicker/css/datepicker.css}"
+          rel="stylesheet" />
+    <link href="../static/assets/libs/jquery-icheck/skins/all.css"
+          th:href="@{~/assets/libs/jquery-icheck/skins/all.css}"
+          rel="stylesheet" />
+
+    <link rel="shortcut icon" href="../static/assets/img/favicon.ico"
+          th:href="@{~/assets/img/favicon.ico}"
+    />
+    <link rel="apple-touch-icon" href="../static/assets/img/apple-touch-icon.png"
+          th:href="@{~/assets/img/apple-touch-icon.png}"
+    />
+    <link rel="apple-touch-icon" sizes="57x57" href="../static/assets/img/apple-touch-icon-57x57.png"
+          th:href="@{~/assets/img/apple-touch-icon-57x57.png}"
+    />
+    <link rel="apple-touch-icon" sizes="72x72" href="../static/assets/img/apple-touch-icon-72x72.png"
+          th:href="@{~/assets/img/apple-touch-icon-72x72.png}"
+    />
+    <link rel="apple-touch-icon" sizes="76x76" href="../static/assets/img/apple-touch-icon-76x76.png"
+          th:href="@{~/assets/img/apple-touch-icon-76x76.png}"
+    />
+    <link rel="apple-touch-icon" sizes="114x114" href="../static/assets/img/apple-touch-icon-114x114.png"
+          th:href="@{~/assets/img/apple-touch-icon-114x114.png}"
+    />
+    <link rel="apple-touch-icon" sizes="120x120" href="../static/assets/img/apple-touch-icon-120x120.png"
+          th:href="@{~/assets/img/apple-touch-icon-120x120.png}"
+    />
+    <link rel="apple-touch-icon" sizes="144x144" href="../static/assets/img/apple-touch-icon-144x144.png"
+          th:href="@{~/assets/img/apple-touch-icon-144x144.png}"
+    />
+    <link rel="apple-touch-icon" sizes="152x152" href="../static/assets/img/apple-touch-icon-152x152.png"
+          th:href="@{~/assets/img/apple-touch-icon-152x152.png}"
+    />
+    <!-- Code Highlighter for Demo -->
+    <link href="../static/assets/libs/prettify/github.css" th:href="@{~/assets/libs/prettify/github.css}" rel="stylesheet" />
+    <!-- Extra CSS Libraries Start -->
+    <link href="../static/assets/libs/bootstrap-select/bootstrap-select.min.css" th:href="@{~/assets/libs/prettify/github.css}" rel="stylesheet" type="text/css" />
+    <link href="../static/assets/libs/bootstrap-select2/select2.css" th:href="@{~/assets/libs/bootstrap-select2/select2.css}" rel="stylesheet" type="text/css" />
+    <link href="../static/assets/libs/bootstrap-xeditable/css/bootstrap-editable.css" th:href="@{~/assets/libs/bootstrap-xeditable/css/bootstrap-editable.css}" rel="stylesheet" type="text/css" />
+    <link href="../static/assets/libs/bootstrap-select2/select2.css" th:href="@{~/assets/libs/bootstrap-select2/select2.css}" rel="stylesheet" type="text/css" />
+    <link href="../static/assets/css/style.css" th:href="@{~/assets/css/style.css}" rel="stylesheet" type="text/css" />
+    <!-- Extra CSS Libraries End -->
+    <link href="../static/assets/css/style-responsive.css" th:href="@{~/assets/css/style-responsive.css}" rel="stylesheet" />
+</head>
+<body class="fixed-left">
+<!-- Modal Start -->
+<!-- Modal Task Progress -->
+<div class="md-modal md-3d-flip-vertical" id="task-progress">
+    <div class="md-content">
+        <h3><strong>您的项目进度</strong> Information</h3>
+        <div>
+            <p>项目1</p>
+            <div class="progress progress-xs for-modal">
+                <div class="progress-bar progress-bar-success" roles="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                    <span class="sr-only">80&#37; Complete</span>
+                </div>
+            </div>
+            <p>项目2</p>
+            <div class="progress progress-xs for-modal">
+                <div class="progress-bar progress-bar-warning" roles="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+                    <span class="sr-only">65&#37; Complete</span>
+                </div>
+            </div>
+            <p>项目3</p>
+            <div class="progress progress-xs for-modal">
+                <div class="progress-bar progress-bar-info" roles="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 95%">
+                    <span class="sr-only">95&#37; Complete</span>
+                </div>
+            </div>
+            <p>项目4</p>
+            <div class="progress progress-xs for-modal">
+                <div class="progress-bar progress-bar-primary" roles="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100&#37; Complete</span>
+                </div>
+            </div>
+            <p class="text-center">
+                <button class="btn btn-danger btn-sm md-close">Close</button>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Logout -->
+<div class="md-modal md-just-me" id="logout-modal">
+    <div class="md-content">
+        <h3><strong>Logout</strong> Confirmation</h3>
+        <div>
+            <p class="text-center">Are you sure want to logout from this awesome system?</p>
+            <p class="text-center">
+                <button class="btn btn-danger md-close">Nope!</button>
+                <a href="login" class="btn btn-success md-close">Yeah, I'm sure</a>
+            </p>
+        </div>
+    </div>
+</div>        <!-- Modal End -->
+<!-- Begin page -->
+<div id="wrapper">
+
+    <!-- Start right content -->
+    <div class="content-page">
+        <!-- ============================================================== -->
+        <!-- Start Content here -->
+        <!-- ============================================================== -->
+        <div class="content">
+            <!-- Page Heading Start -->
+            <div class="page-heading">
+                <h1><i class='fa fa-magic'></i>新建项目</h1>
+                <h3>先填写项目基本信息</h3>            	</div>
+            <!-- Page Heading End-->
+            <div class="row">
+                <div class="col-md-12 portlets">
+                    <!-- Your awesome content goes here -->
+                    <div class="widget animated fadeInDown">
+                        <form id="myWizard">
+                            <section class="step" data-step-title="First step">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="title">应用名称</label>
+                                            <input type="text" v-model="project.title" id="title" placeholder="比如：轻博客系统" class="form-control"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tags">应用领域</label>
+                                            <a href="#"  id="tags"  data-type="select2" data-pk="1" data-title="Enter tags" class="editable editable-click" style="display: inline;">{{project.projectarea}}</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="notes">
+                                            <h4><strong>项目描述</strong></h4>
+                                            <textarea rows="12" cols="50" class="border-green-1" v-model="project.description">
+                                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+                                                    Duis autem vel eum iriure dolor in hendrerit in vulputate.
+
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="step" data-step-title="Second step">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                    <div class="icon-added form-group">
+                                        <i class="fa fa-search"></i>
+                                        <input type="text" v-model="key" v-on:input="loadfriend(key)" placeholder="邮箱/手机/昵称/用户名" class="form-control"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <span>最近联系人</span><br/>
+                                        <a class="" href="javascript:void(0);" v-for="fr in myfirnds">
+                                            <span class="" v-text="fr.username">小明</span>
+                                        </a>
+                                    </div>
+                                    </div>
+                                    <div class="col-sm-6 row-fluid">
+                                        <div class="notes">
+                                            <!--放左侧点击之后要显示的内容-->
+                                            <ul class="">
+                                                <li>已选成员： </li>
+                                                <li class="">
+                                                    <span class="">chenxiangdong</span>
+                                                </li>
+                                                <!-- ngRepeat: friend in selected_users -->
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </section>
+                            <section class="step" data-step-title="Third step">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="inputFirstname">Firstname</label>
+                                            <input type="text" id="inputFirstname" placeholder="Firstname" class="form-control"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputCity">City</label>
+                                            <input type="text" id="inputCity" placeholder="City" class="form-control"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="notes">
+                                            <h4><strong>Example</strong> note</h4>
+                                            <p style="text-align: justify">
+                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                                            </p>
+                                            <ol>
+                                                <li>Duis autem vel eum iriure dolor in hendrerit in vulputate</li>
+                                                <li>Lorem ipsum dolor sit amet</li>
+                                                <li>Sed diam nonummy nibh euismod tincidunt</li>
+                                                <li>Sonsectetuer adipiscing elit</li>
+                                                <li>Tincidunt ut laoreet dolore magna aliquam erat volutpat</li>
+                                            </ol>
+                                            <p style="text-align: justify">
+                                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer Start -->
+            <footer>
+
+            </footer>
+            <!-- Footer End -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End content here -->
+        <!-- ============================================================== -->
+
+    </div>
+</div>
+<div class="md-overlay"></div>
+<!-- End of eoverlay modal -->
+
+<script type="text/javascript">
+    //<![CDATA[
+    new Vue({
+        el:"#wrapper",
+        data:{
+            project:{
+                title:"cxd",
+                description:"des",
+                projectarea:"Java,cxd",
+                cxd:''
+            },
+            myfirnds:[
+                {
+                    username:'sss'
+                }
+            ],
+            chosenfriends:[],
+            key:''
+
+        },
+
+        methods:{
+            loadfriend:function(key){
+
+            }
+
+        }
+    })
+    //]]>
+</script>
+<script>
+    var resizefunc = [];
+</script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../static/assets/libs/jquery/jquery-1.11.1.min.js"
+        th:src="@{~/assets/libs/jquery/jquery-1.11.1.min.js}"
+></script>
+<script src="../static/assets/libs/bootstrap/js/bootstrap.min.js"
+        th:src="@{~/assets/libs/bootstrap/js/bootstrap.min.js}"
+></script>
+<script src="../static/assets/libs/jqueryui/jquery-ui-1.10.4.custom.min.js"
+        th:src="@{~/assets/libs/jqueryui/jquery-ui-1.10.4.custom.min.js}"
+></script>
+<script src="../static/assets/libs/jquery-ui-touch/jquery.ui.touch-punch.min.js"
+        th:src="@{~/assets/libs/jquery-ui-touch/jquery.ui.touch-punch.min.js}"
+></script>
+<script src="../static/assets/libs/jquery-detectmobile/detect.js"
+        th:src="@{~/assets/libs/jquery-detectmobile/detect.js}"
+></script>
+<script src="../static/assets/libs/jquery-animate-numbers/jquery.animateNumbers.js"
+        th:src="@{~/assets/libs/jquery-animate-numbers/jquery.animateNumbers.js}"
+></script>
+<script src="../static/assets/libs/ios7-switch/ios7.switch.js"
+        th:src="@{~/assets/libs/ios7-switch/ios7.switch.js}"
+></script>
+<script src="../static/assets/libs/fastclick/fastclick.js"
+        th:src="@{~/assets/libs/fastclick/fastclick.js}"
+></script>
+<script src="../static/assets/libs/jquery-blockui/jquery.blockUI.js"
+        th:src="@{~/assets/libs/jquery-blockui/jquery.blockUI.js}"
+></script>
+<script src="../static/assets/libs/bootstrap-bootbox/bootbox.min.js"
+        th:src="@{~/assets/libs/bootstrap-bootbox/bootbox.min.js}"
+></script>
+<script src="../static/assets/libs/jquery-slimscroll/jquery.slimscroll.js"
+        th:src="@{~/assets/libs/jquery-slimscroll/jquery.slimscroll.js}"
+></script>
+<script src="../static/assets/libs/jquery-sparkline/jquery-sparkline.js"
+        th:src="@{~/assets/libs/jquery-sparkline/jquery-sparkline.js}"
+></script>
+<script src="../static/assets/libs/nifty-modal/js/classie.js"
+        th:src="@{~/assets/libs/nifty-modal/js/classie.js}"
+></script>
+<script src="../static/assets/libs/nifty-modal/js/modalEffects.js"
+        th:src="@{~/assets/libs/nifty-modal/js/modalEffects.js}"
+></script>
+<script src="../static/assets/libs/sortable/sortable.min.js"
+        th:src="@{~/assets/libs/sortable/sortable.min.js}"
+></script>
+<script src="../static/assets/libs/bootstrap-fileinput/bootstrap.file-input.js"
+        th:src="@{~/assets/libs/bootstrap-fileinput/bootstrap.file-input.js}"
+></script>
+<script src="../static/assets/libs/bootstrap-select/bootstrap-select.min.js"
+        th:src="@{~/assets/libs/bootstrap-select/bootstrap-select.min.js}"
+></script>
+<script src="../static/assets/libs/bootstrap-select2/select2.min.js"
+        th:src="@{~/assets/libs/bootstrap-select2/select2.min.js}"
+></script>
+<script src="../static/assets/libs/magnific-popup/jquery.magnific-popup.min.js"
+        th:src="@{~/assets/libs/magnific-popup/jquery.magnific-popup.min.js}"
+></script>
+<script src="../static/assets/libs/pace/pace.min.js"
+        th:src="@{~/assets/libs/pace/pace.min.js}"
+></script>
+<script src="../static/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.js"
+        th:src="@{~/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.js}"
+></script>
+<script src="../static/assets/libs/jquery-icheck/icheck.min.js"
+        th:src="@{~/assets/libs/jquery-icheck/icheck.min.js}"
+></script>
+
+<!-- Demo Specific JS Libraries -->
+<script src="../static/assets/libs/prettify/prettify.js"
+        th:src="@{~/assets/libs/prettify/prettify.js}"
+></script>
+<script src="../static/assets/js/init.js"
+        th:src="@{~/assets/js/init.js}"
+></script>
+<script src="../static/js/script.js"
+        th:src="@{~/js/script.js}"
+></script>
+<!-- Page Specific JS Libraries -->
+<script src="../static/assets/libs/jquery-wizard/jquery.easyWizard.js" th:src="@{~/assets/libs/jquery-wizard/jquery.easyWizard.js}"></script>
+<script src="../static/assets/js/pages/form-wizard.js" th:src="@{~/assets/js/pages/form-wizard.js}"></script>
+<script src="../static/assets/libs/bootstrap-select/bootstrap-select.min.js" th:src="@{~/assets/libs/bootstrap-select/bootstrap-select.min.js}"></script>
+<script src="../static/assets/libs/bootstrap-inputmask/inputmask.js" th:src="@{~/assets/libs/bootstrap-inputmask/inputmask.js}"></script>
+<script src="../static/assets/libs/bootstrap-xeditable/js/bootstrap-editable.min.js" th:src="@{~/assets/libs/bootstrap-xeditable/js/bootstrap-editable.min.js}"></script>
+<script src="../static/assets/libs/bootstrap-xeditable/demo/jquery.mockjax.js" th:src="@{~/assets/libs/bootstrap-xeditable/demo/jquery.mockjax.js}"></script>
+<script src="../static/assets/libs/bootstrap-xeditable/demo/demo-mock.js" th:src="@{~/assets/libs/bootstrap-xeditable/demo/demo-mock.js}"></script>
+<script src="../static/assets/libs/bootstrap-select2/select2.min.js" th:src="@{~/assets/libs/bootstrap-select2/select2.min.js}"></script>
+<script src="../static/assets/libs/jquery-clndr/moment-2.5.1.js" th:src="@{~/assets/libs/jquery-clndr/moment-2.5.1.js}"></script>
+<script src="../static/assets/libs/bootstrap-typeahead/bootstrap3-typeahead.min.js" th:src="@{~/assets/libs/bootstrap-typeahead/bootstrap3-typeahead.min.js}"></script>
+<script src="../static/assets/libs/ckeditor/ckeditor.js" th:src="@{~/assets/libs/ckeditor/ckeditor.js}"></script>
+<script src="../static/assets/libs/ckeditor/adapters/jquery.js" th:src="@{~/assets/libs/ckeditor/adapters/jquery.js}"></script>
+<script src="../static/assets/js/pages/advanced-forms.js" th:src="@{~/assets/js/pages/advanced-forms.js}"></script>
+
+<script type="text/javascript">
+    //<![CDATA[
+    new Vue({
+        el:"#wrapper",
+        data:{
+            project:{
+                title:'cxd',
+                description:'des'
+            },
+            myfirnds:[
+                {
+                    username:'sss'
+                }
+            ],
+            chosenfriends:[],
+            key:''
+
+        },
+
+        methods:{
+            loadfriend:function(key){
+
+            }
+
+        }
+    })
+    //]]>
+</script>
+</body>
+</html>
