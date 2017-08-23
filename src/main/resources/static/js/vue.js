@@ -1891,11 +1891,11 @@
 // generated render function is guaranteed to return Array<VNode>. There are
 // two cases where extra normalization is needed:
 
-// 1. When the children contains components - because a functional component
+// 1. When the children contains fragments - because a functional component
 // may return an Array instead of a single root. In this case, just a simple
 // normalization is needed - if any child is an Array, we flatten the whole
 // thing with Array.prototype.concat. It is guaranteed to be only 1-level deep
-// because functional components already normalize their own children.
+// because functional fragments already normalize their own children.
     function simpleNormalizeChildren (children) {
         for (var i = 0; i < children.length; i++) {
             if (Array.isArray(children[i])) {
@@ -2448,7 +2448,7 @@
         hydrating = false;
 
         // manually mounted instance, call mounted on self
-        // mounted is called for render-created child components in its inserted hook
+        // mounted is called for render-created child fragments in its inserted hook
         if (vm.$vnode == null) {
             vm._isMounted = true;
             callHook(vm, 'mounted');
@@ -3040,7 +3040,7 @@
             data = {};
             "development" !== 'production' && warn(
                 'data functions should return an object:\n' +
-                'https://vuejs.org/v2/guide/components.html#data-Must-Be-a-Function',
+                'https://vuejs.org/v2/guide/fragments.html#data-Must-Be-a-Function',
                 vm
             );
         }
@@ -3307,7 +3307,7 @@
             if (isDef(data.attrs)) { mergeProps(props, data.attrs); }
             if (isDef(data.props)) { mergeProps(props, data.props); }
         }
-        // ensure the createElement function in functional components
+        // ensure the createElement function in functional fragments
         // gets a unique context - this is necessary for correct named slot check
         var _context = Object.create(context);
         var h = function (a, b, c, d) { return createElement(_context, a, b, c, d, true); };
@@ -3355,7 +3355,7 @@
                 );
                 child.$mount(hydrating ? vnode.elm : undefined, hydrating);
             } else if (vnode.data.keepAlive) {
-                // kept-alive components, treat as a patch
+                // kept-alive fragments, treat as a patch
                 var mountedNode = vnode; // work around flow
                 componentVNodeHooks.prepatch(mountedNode, mountedNode);
             }
@@ -3383,7 +3383,7 @@
             if (vnode.data.keepAlive) {
                 if (context._isMounted) {
                     // vue-router#1212
-                    // During updates, a kept-alive component's child components may
+                    // During updates, a kept-alive component's child fragments may
                     // change, so directly walking the tree here may call activated hooks
                     // on incorrect children. Instead we push them into a queue which will
                     // be processed after the whole patch process ended.
@@ -3471,7 +3471,7 @@
         data.on = data.nativeOn;
 
         if (isTrue(Ctor.options.abstract)) {
-            // abstract components do not keep anything
+            // abstract fragments do not keep anything
             // other than props & listeners
             data = {};
         }
@@ -3616,7 +3616,7 @@
                     config.parsePlatformTagName(tag), data, children,
                     undefined, undefined, context
                 );
-            } else if (isDef(Ctor = resolveAsset(context.$options, 'components', tag))) {
+            } else if (isDef(Ctor = resolveAsset(context.$options, 'fragments', tag))) {
                 // component
                 vnode = createComponent(Ctor, data, context, children, tag);
             } else {
@@ -4342,7 +4342,7 @@
                     return vnode
                 }
                 var key = vnode.key == null
-                    // same constructor may get registered as different local components
+                    // same constructor may get registered as different local fragments
                     // so cid alone is not enough (#3269)
                     ? componentOptions.Ctor.cid + (componentOptions.tag ? ("::" + (componentOptions.tag)) : '')
                     : vnode.key;
@@ -4396,7 +4396,7 @@
         });
 
         // this is used to identify the "base" constructor to extend all plain-object
-        // components with in Weex's multi-instance scenarios.
+        // fragments with in Weex's multi-instance scenarios.
         Vue.options._base = Vue;
 
         extend(Vue.options.components, builtInComponents);
@@ -4855,7 +4855,7 @@
                     ) {
                         warn(
                             'Unknown custom element: <' + tag + '> - did you ' +
-                            'register the component correctly? For recursive components, ' +
+                            'register the component correctly? For recursive fragments, ' +
                             'make sure to provide the "name" option.',
                             vnode.context
                         );
@@ -7311,7 +7311,7 @@
             }
 
             // apply transition data to child
-            // use getRealChild() to ignore abstract components e.g. keep-alive
+            // use getRealChild() to ignore abstract fragments e.g. keep-alive
             var child = getRealChild(rawChild);
             /* istanbul ignore if */
             if (!child) {
@@ -7549,7 +7549,7 @@
     Vue$3.config.getTagNamespace = getTagNamespace;
     Vue$3.config.isUnknownElement = isUnknownElement;
 
-// install platform runtime directives & components
+// install platform runtime directives & fragments
     extend(Vue$3.options.directives, platformDirectives);
     extend(Vue$3.options.components, platformComponents);
 
@@ -8596,7 +8596,7 @@
         node.static = isStatic(node);
         if (node.type === 1) {
             // do not make component slot content static. this avoids
-            // 1. components not able to mutate slot nodes
+            // 1. fragments not able to mutate slot nodes
             // 2. static slot content fails for hot-reloading
             if (
                 !isPlatformReservedTag(node.tag) &&
@@ -8989,7 +8989,7 @@
         if (el.pre) {
             data += "pre:true,";
         }
-        // record original tag name for components using "is" attribute
+        // record original tag name for fragments using "is" attribute
         if (el.component) {
             data += "tag:\"" + (el.tag) + "\",";
         }
@@ -9069,7 +9069,7 @@
         if ("development" !== 'production' && (
                 el.children.length > 1 || ast.type !== 1
             )) {
-            warn$3('Inline-template components must have exactly one child element.');
+            warn$3('Inline-template fragments must have exactly one child element.');
         }
         if (ast.type === 1) {
             var inlineRenderFns = generate(ast, currentOptions);

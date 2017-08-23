@@ -1,0 +1,3 @@
+INSERT INTO WorkMatesDatabase.dbo.user_info (birthday, email, password, photo_src, sex, study_area, username) VALUES ('2017-07-11 19:16:17.6220000', 'feelingcxd@126.com', '123', null, '男', null, 'cxd');
+INSERT INTO WorkMatesDatabase.dbo.user_info (birthday, email, password, photo_src, sex, study_area, username) VALUES ('2017-07-11 19:16:46.0350000', 'ideacxd@126.com', '123', null, '男', null, 'syq');
+INSERT INTO WorkMatesDatabase.dbo.user_info (birthday, email, password, photo_src, sex, study_area, username) VALUES ('2017-07-25 18:12:39.6900000', 'feelingcxd@126.com', '123', null, '男', null, '陈想东');

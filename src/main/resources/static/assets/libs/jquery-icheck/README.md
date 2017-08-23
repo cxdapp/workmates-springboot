@@ -236,7 +236,7 @@ iCheck provides plenty callbacks, which may be used to handle changes.
   <tbody>
     <tr>
       <td>ifClicked</td>
-      <td>user clicked on a customized input or an assigned label</td>
+      <td>users clicked on a customized input or an assigned label</td>
     </tr>
     <tr>
       <td>ifChanged</td>

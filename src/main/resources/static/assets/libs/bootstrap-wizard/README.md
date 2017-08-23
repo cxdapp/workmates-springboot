@@ -177,12 +177,12 @@ Methods
 		<tr>
 			<td>enable</td>
 			<td>zero based index</td>
-			<td>Enables a tab, allows a user to click it (removes .disabled if the item has that class)</td>
+			<td>Enables a tab, allows a users to click it (removes .disabled if the item has that class)</td>
 		</tr>
 		<tr>
 			<td>disable</td>
 			<td>zero based index</td>
-			<td>Disables a tab, disallows a user to click it (adds .disabled to the li element)</td>
+			<td>Disables a tab, disallows a users to click it (adds .disabled to the li element)</td>
 		</tr>
 		<tr>
 			<td>display</td>

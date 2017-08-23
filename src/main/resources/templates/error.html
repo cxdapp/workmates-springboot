@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title>统一异常处理</title>
+    <th:block th:include="fragments/headerinc :: head" />
+    <!-- Code Highlighter for Demo -->
+    <link href="../static/assets/libs/prettify/github.css" th:href="@{~/assets/libs/prettify/github.css}" rel="stylesheet" />
+
+    <!-- Extra CSS Libraries Start -->
+    <link href="../static/assets/css/style.css" th:href="@{~/assets/css/style.css}" rel="stylesheet" type="text/css" />
+    <!-- Extra CSS Libraries End -->
+    <link href="../static/assets/css/style-responsive.css" th:href="@{~/assets/css/style-responsive.css}" rel="stylesheet" />
+</head>
+<style>
+
+</style>
+<body class="fixed-left full-content">
+
+<!-- Begin page -->
+<div class="container">
+    <div class="full-content-center animated flipInX">
+        <h1>404</h1>
+        <h2>未获得权限！</h2><br />
+        <br/>
+        <div class="text-lightblue-1">
+        <div style="size: 15px;color: #505458">
+            出错地址：<div th:text="${url}"></div><br />
+            原因：<h2 th:text="${exception.message}" style=""></h2>
+        </div>
+        </div>
+      <br />
+        <a class="btn btn-success btn-sm" href="/login"><i class="fa fa-angle-left"></i> Back to Login</a>
+    </div>
+</div>
+<th:block th:include="fragments/header :: footer" />
+<script src="../static/assets/js/init.js" th:src="@{~/assets/js/init.js}"></script>
+</body>
+</html>

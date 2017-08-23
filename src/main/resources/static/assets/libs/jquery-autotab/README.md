@@ -135,7 +135,7 @@ $('#alphanumeric5').autotab({ format: 'alphanumeric', previous: '#alphanumeric4'
     <td>
       <strong>string</strong>: Disables auto tab and filtering functionality on all matched elements.
       <br />
-      <strong>Note</strong>: Both <code>destroy</code> and <code>remove</code> will disable auto tab and filtering. Standard and custom event bindings persist as they check the status of an element when called. Removing the <code>keydown</code> and <code>keypress</code> can have a negative impact in both user and developer experience if the same events have been bound in other areas.
+      <strong>Note</strong>: Both <code>destroy</code> and <code>remove</code> will disable auto tab and filtering. Standard and custom event bindings persist as they check the status of an element when called. Removing the <code>keydown</code> and <code>keypress</code> can have a negative impact in both users and developer experience if the same events have been bound in other areas.
     </td>
   </tr>
   <tr>

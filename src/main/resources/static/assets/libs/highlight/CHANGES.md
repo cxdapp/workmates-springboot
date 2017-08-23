@@ -620,7 +620,7 @@ diagnostics!
 
 The version to fulfil old promises.
 
-The most significant change is that highlight.js now preserves custom user
+The most significant change is that highlight.js now preserves custom users
 markup in code along with its own highlighting markup. This means that now it's
 possible to use, say, links in code. Thanks to [Vladimir Dolzhenko][vd] for the
 [initial proposal][1] and for making a proof-of-concept patch.

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Me</title>
+    <script src="/js/script.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li>
+                <strong >{{myname}}</strong>
+            </li>
+        </ul>
+    </div>
+
+</body>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            myname:''
+        },
+        mounted:function () {
+            axios.get("user/getUsername?access_token="+getCookie('access_token'))
+                .then(function (response) {
+                    this.myname=response.data;
+                }).bind(this);
+        }
+    })
+</script>
+</html>

@@ -5100,7 +5100,7 @@ Editableform based on Twitter Bootstrap 3
 			}
 			else if (this.component && this.hasInput){ // component: input + button
 				this._events = [
-					// For components that are not readonly, allow keyboard nav
+					// For fragments that are not readonly, allow keyboard nav
 					[this.element.find('input'), {
 						focus: $.proxy(this.show, this),
 						keyup: $.proxy(this.update, this),

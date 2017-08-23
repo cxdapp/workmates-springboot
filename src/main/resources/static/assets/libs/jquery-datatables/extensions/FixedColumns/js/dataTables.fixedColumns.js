@@ -180,7 +180,7 @@ var FixedColumns = function ( dt, init ) {
 			"dt": null,
 
 			/**
-			 * Left fixed column grid components
+			 * Left fixed column grid fragments
 			 * @namespace
 			 */
 			"left": {
@@ -191,7 +191,7 @@ var FixedColumns = function ( dt, init ) {
 			},
 
 			/**
-			 * Right fixed column grid components
+			 * Right fixed column grid fragments
 			 * @namespace
 			 */
 			"right": {

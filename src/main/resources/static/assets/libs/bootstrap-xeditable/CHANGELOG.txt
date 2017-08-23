@@ -185,7 +185,7 @@ Version 1.1.1 Nov 30, 2012
 [enh] object can be passed in 'option' method to set several options at once (vitalets)  
 [enh #20] toggle editable by 'dblclick' and 'mouseenter' (vitalets)  
 [enh] added 'inputs-ext' directory with sample input 'address'. They will not be concatenated to main files (vitalets)  
-[enh #13] 'onblur' option: to cancel, submit or ignore when user clicks outside the form (vitalets)  
+[enh #13] 'onblur' option: to cancel, submit or ignore when users clicks outside the form (vitalets)
 [enh] 'ajaxOptions' parameter for advanced ajax configuration (vitalets)  
 [enh] 'success' callback can return object to overwrite submitted value (vitalets)  
 	   
@@ -207,7 +207,7 @@ Version 1.0.1 Nov 22, 2012
 [enh #7] 'shown', 'hidden' events added (vitalets)         
 [enh #1] params can be a function to calculate it dynamically (vitalets)         
 [enh #6] do not preventDefault() in click when toggle='manual'. This allows to have clickable links (vitalets)
-[bug #3] should not mark element with unsave css if url is user's function (vitalets)         
+[bug #3] should not mark element with unsave css if url is users's function (vitalets)
 		  
 				 
 Version 1.0.0 Nov 19, 2012 

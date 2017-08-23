@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+</head>
+<body>
+    <!-- Top Bar Start -->
+    <div th:fragment="topbar">
+    <div class="topbar">
+        <div class="topbar-left">
+            <div class="logo">
+                <h1><a href="#"><img src="../../static/assets/img/logo.png" th:src="@{~/assets/img/logo.png}" alt="Logo"/></a></h1>
+            </div>
+            <button class="button-menu-mobile open-left">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        <!-- Button mobile view to collapse sidebar menu -->
+        <div class="navbar navbar-default" roles="navigation">
+            <div class="container">
+                <div class="navbar-collapse2">
+                    <ul class="nav navbar-nav hidden-xs">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-th"></i></a>
+                            <div class="dropdown-menu grid-dropdown">
+                                <div class="row stacked">
+                                    <div class="col-xs-4">
+                                        <a href="javascript:;" data-app="notes-app" data-status="inactive"><i class="icon-edit"></i>Notes</a>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="javascript:;" data-app="todo-app" data-status="inactive"><i class="icon-check"></i>Todo List</a>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="javascript:;" data-app="calc" data-status="inactive"><i class="fa fa-calculator"></i>所有项目</a>
+                                    </div>
+                                </div>
+                                <div class="row stacked">
+                                    <div class="col-xs-4">
+                                        <a href="javascript:;" data-app="weather-widget" data-status="active"><i class="icon-cloud-3"></i>Weather</a>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="javascript:;" data-app="calendar-widget2" data-status="active"><i class="icon-calendar"></i>Calendar</a>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <a href="javascript:;" data-app="stock-app" data-status="inactive"><i class="icon-chart-line"></i>Stocks</a>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </li>
+
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right top-navbar" style="margin-right: 20px">
+                        <li class="dropdown iconify hide-phone">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">&nbsp;通知&nbsp;<span class="label label-danger absolute">4</span></a>
+                            <ul class="dropdown-menu dropdown-message">
+                                <li class="dropdown-header notif-header"><i class="icon-bell-2"></i>新的消息<a class="pull-right" href="#"><i class="fa fa-cog"></i></a></li>
+                                <li class="unread">
+                                    <a href="#">
+                                        <p><strong>John Doe</strong> Uploaded a photo <strong>&#34;DSC000254.jpg&#34;</strong>
+                                            <br /><i>2 minutes ago</i>
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="unread">
+                                    <a href="#">
+                                        <p><strong>John Doe</strong> Created an photo album  <strong>&#34;Fappening&#34;</strong>
+                                            <br /><i>8 minutes ago</i>
+                                        </p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <p><strong>John Malkovich</strong> Added 3 products
+                                            <br /><i>3 hours ago</i>
+                                        </p>
+                                    </a>
+                                </li>
+
+                                <li class="dropdown-footer">
+                                    <div class="btn-group btn-group-justified">
+                                        <div class="btn-group">
+                                            <a href="#" class="btn btn-sm btn-primary"><i class="icon-ccw-1"></i> Refresh</a>
+                                        </div>
+                                        <div class="btn-group">
+                                            <a href="#" class="btn btn-sm btn-danger"><i class="icon-trash-3"></i> Clear All</a>
+                                        </div>
+                                        <div class="btn-group">
+                                            <a href="#" class="btn btn-sm btn-success">See All <i class="icon-right-open-2"></i></a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown iconify hide-phone">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">&nbsp;私信&nbsp;&nbsp;<span class="label label-danger absolute">3</span></a>
+                            <ul class="dropdown-menu dropdown-message">
+                                <li class="dropdown-header notif-header"><i class="icon-mail-2"></i>私信记录</li>
+                                <li class="unread">
+                                    <a href="#" class="clearfix">
+                                        <img src="images/users/chat/2.jpg" class="xs-avatar ava-dropdown" alt="Avatar"/>
+                                        <strong>John Doe</strong><i class="pull-right msg-time">5 minutes ago</i><br />
+                                        <p>Duis autem vel eum iriure dolor in hendrerit ...</p>
+                                    </a>
+                                </li>
+                                <li class="unread">
+                                    <a href="#" class="clearfix">
+                                        <img src="images/users/chat/1.jpg" class="xs-avatar ava-dropdown" alt="Avatar"/>
+                                        <strong>Sandra Kraken</strong><i class="pull-right msg-time">22 minutes ago</i><br />
+                                        <p>Duis autem vel eum iriure dolor in hendrerit ...</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="clearfix">
+                                        <img src="images/users/chat/3.jpg" class="xs-avatar ava-dropdown" alt="Avatar"/>
+                                        <strong>Zoey Lombardo</strong><i class="pull-right msg-time">41 minutes ago</i><br />
+                                        <p>Duis autem vel eum iriure dolor in hendrerit ...</p>
+                                    </a>
+                                </li>
+                                <li class="dropdown-footer"><div class=""><a href="#" class="btn btn-sm btn-block btn-primary"><i class="fa fa-share"></i> See all messages</a></div></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown iconify hide-phone"><a href="#" onclick="javascript:toggle_fullscreen()"><i class="icon-resize-full-2"></i></a></li>
+                        <li class="dropdown topbar-profile">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="rounded-image topbar-profile-image"><img src="../../static/img/user.jpg" th:src="@{~/img/user.jpg}"/></span>  <strong id="myname" v-text="username" >游客</strong> <i class="fa fa-caret-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/u/projects/create">新建项目</a></li>
+                                <li><a href="#">Change Password</a></li>
+                                <li><a href="#">Account Setting</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#"><i class="icon-help-2"></i> Help</a></li>
+                                <li><a href="lockscreen"><i class="icon-lock-1"></i> Lock me</a></li>
+                                <li><a class="md-trigger" data-modal="logout-modal"><i class="icon-logout-1"></i> Logout</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Top Bar End -->
+
+    <!-- Left Sidebar Start -->
+    <div th:fragment="side-menu">
+    <div class="left side-menu">
+        <div class="sidebar-inner slimscrollleft">
+            <!-- Search form -->
+            <form roles="search" class="navbar-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Search" class="form-control"/>
+                    <button type="submit" class="btn search-button"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+            <div class="clearfix"></div>
+            <!--- Profile -->
+            <div class="profile-info">
+                <div class="col-xs-4">
+                    <a href="/personal" class="rounded-image profile-image"><img src="../../static/img/user.jpg" th:src="@{~/img/user.jpg}"/></a>
+                </div>
+                <div class="col-xs-8">
+                    <div class="profile-text">Welcome <b>Workmates</b></div>
+                    <!--<div class="profile-buttons">-->
+                    <!--<a href="javascript:;"><i class="fa fa-envelope-o pulse"></i></a>-->
+                    <!--<a href="#connect" class="open-right"><i class="fa fa-comments"></i></a>-->
+                    <!--<a href="javascript:;" title="Sign Out"><i class="fa fa-power-off text-red-1"></i></a>-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <!--- Divider -->
+            <div class="clearfix"></div>
+            <hr class="divider" />
+            <div class="clearfix"></div>
+            <!--- Divider -->
+            <div id="sidebar-menu">
+                <ul>
+                    <li class='has_sub'>
+                        <a href='javascript:void(0);'><i class='icon-home-3'></i>
+                            <span>个人中心</span>
+                            <span class="pull-right"><i class="fa fa-angle-down"></i></span>
+                        </a>
+                        <ul>
+                            <li><a href='attend'><span>我参与的项目</span></a></li>
+                            <li><a href='create'><span>我开展的项目</span></a></li>
+                        </ul>
+                    </li>
+                    <li class='has_sub'>
+                        <a href='javascript:void(0);'><i class='icon-feather'></i>
+                            <span>项目管理</span>
+                            <span class="pull-right">
+                                    <i class="fa fa-angle-down"></i>
+                                </span>
+                        </a>
+                        <ul>
+                            <li><a href='alerts'><span>查看进度</span></a></li>
+                            <li><a href='buttons'><span>上传文件</span></a></li>
+                            <li><a href='calendar'><span>项目成员</span></a></li>
+                            <li><a href='grid'><span>发起新项目</span></a></li>
+                            <li><a href='icons'><span>招募伙伴</span></a></li>
+                        </ul>
+                    </li>
+                    <li class='has_sub'>
+                        <a href='javascript:void(0);'><i class='icon-pencil-3'></i>
+                            <span>发现</span>
+                            <span class="pull-right"><i class="fa fa-angle-down"></i></span>
+                        </a>
+                        <ul>
+                            <li><a href='forms'><span>发现好友</span></a></li>
+                            <li><a href='advanced-forms'><span>发现项目</span></a></li>
+                            <li><a href='form-wizard'><span>发现团队</span></a></li>
+                        </ul>
+                    </li>
+                    <li class='has_sub'>
+                        <a href='javascript:void(0);'><i class='fa fa-table'></i>
+                            <span>交流</span>
+                            <span class="pull-right"><i class="fa fa-angle-down"></i></span>
+                        </a>
+                        <ul>
+                            <li><a href='tables'><span>好友</span></a></li>
+                            <li><a href='datatables'><span>项目团队</span></a></li>
+                        </ul>
+                    </li>
+                    <li class='has_sub'>
+                        <a href='javascript:void(0);'><i class='icon-feather'></i>
+                            <span>荣誉室</span>
+                            <span class="pull-right"><i class="fa fa-angle-down"></i></span>
+                        </a>
+                        <ul>
+                            <li><a href='google-maps'><span>名人榜</span></a></li>
+                            <li><a href='vector-maps'><span>项目榜</span></a></li>
+                            <li><a href='404'><span>强队榜</span></a></li>
+                        </ul>
+                    </li>
+                    <li class='has_sub'>
+                        <a href='javascript:void(0);'><i class='fa fa-envelope'></i>
+                            <span>团队管理</span>
+                            <span class="pull-right"><i class="fa fa-angle-down"></i></span>
+                        </a>
+                        <ul>
+                            <li><a href='inbox'><span>我的团队</span></a></li>
+                            <li><a href='read-message'><span>团队项目</span></a></li>
+                            <li><a href='new-message'><span>招募队员</span></a></li>
+                        </ul>
+                    </li>
+                    <li class='has_sub'><a href='javascript:void(0);'></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="clearfix"></div><br/><br/><br/>
+        </div>
+        <div class="left-footer">
+            <div class="progress progress-xs">
+                <div class="progress-bar bg-green-1" roles="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                    <span class="progress-precentage">80%</span>
+                </div>
+
+                <a data-toggle="tooltip" title="See task progress" class="btn btn-default md-trigger" data-modal="task-progress"><i class="fa fa-inbox"></i></a>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Left Sidebar End -->
+
+    <div th:fragment="footer">
+        <!-- the overlay modal element -->
+        <div class="md-overlay"></div>
+        <!-- End of eoverlay modal -->
+        <script>
+            var resizefunc = [];
+        </script>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="../../static/assets/libs/jquery/jquery-1.11.1.min.js"
+                th:src="@{/webjars/jquery/3.2.1/dist/jquery.min.js}"
+        ></script>
+        <script src="../../static/assets/libs/bootstrap/js/bootstrap.min.js"
+                th:src="@{/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js}"
+        ></script>
+        <script src="../../static/assets/libs/jqueryui/jquery-ui-1.10.4.custom.min.js"
+                th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.js}"
+        ></script>
+        <script src="../../static/assets/libs/jquery-ui-touch/jquery.ui.touch-punch.min.js"
+                th:src="@{~/assets/libs/jquery-ui-touch/jquery.ui.touch-punch.min.js}"
+        ></script>
+        <script src="../../static/assets/libs/jquery-detectmobile/detect.js"
+                th:src="@{~/assets/libs/jquery-detectmobile/detect.js}"
+        ></script>
+        <script src="../../static/assets/libs/jquery-animate-numbers/jquery.animateNumbers.js"
+                th:src="@{~/assets/libs/jquery-animate-numbers/jquery.animateNumbers.js}"
+        ></script>
+        <script src="../../static/assets/libs/ios7-switch/ios7.switch.js"
+                th:src="@{~/assets/libs/ios7-switch/ios7.switch.js}"
+        ></script>
+        <script src="../../static/assets/libs/fastclick/fastclick.js"
+                th:src="@{/webjars/fastclick/1.0.6/lib/fastclick.js}"
+        ></script>
+        <script src="../../static/assets/libs/jquery-blockui/jquery.blockUI.js"
+                th:src="@{/webjars/jquery-blockui/2.65/jquery.blockUI.js}"
+        ></script>
+        <script src="../../static/assets/libs/bootstrap-bootbox/bootbox.min.js"
+                th:src="@{~/assets/libs/bootstrap-bootbox/bootbox.min.js}"
+        ></script>
+        <script src="../../static/assets/libs/jquery-slimscroll/jquery.slimscroll.js"
+                th:src="@{~/assets/libs/jquery-slimscroll/jquery.slimscroll.js}"
+        ></script>
+        <script src="../../static/assets/libs/jquery-sparkline/jquery-sparkline.js"
+                th:src="@{~/assets/libs/jquery-sparkline/jquery-sparkline.js}"
+        ></script>
+        <script src="../../static/assets/libs/nifty-modal/js/classie.js"
+                th:src="@{~/assets/libs/nifty-modal/js/classie.js}"
+        ></script>
+        <script src="../../static/assets/libs/nifty-modal/js/modalEffects.js"
+                th:src="@{~/assets/libs/nifty-modal/js/modalEffects.js}"
+        ></script>
+        <script src="../../static/assets/libs/sortable/sortable.min.js"
+                th:src="@{~/assets/libs/sortable/sortable.min.js}"
+        ></script>
+        <script src="../../static/assets/libs/bootstrap-fileinput/bootstrap.file-input.js"
+                th:src="@{~/assets/libs/bootstrap-fileinput/bootstrap.file-input.js}"
+        ></script>
+        <script src="../../static/assets/libs/bootstrap-select/bootstrap-select.min.js"
+                th:src="@{~/assets/libs/bootstrap-select/bootstrap-select.min.js}"
+        ></script>
+        <script src="../../static/assets/libs/bootstrap-select2/select2.min.js"
+                th:src="@{~/assets/libs/bootstrap-select2/select2.min.js}"
+        ></script>
+        <script src="../../static/assets/libs/magnific-popup/jquery.magnific-popup.min.js"
+                th:src="@{~/assets/libs/magnific-popup/jquery.magnific-popup.min.js}"
+        ></script>
+        <script src="../../static/assets/libs/pace/pace.min.js"
+                th:src="@{/webjars/pace/1.0.2/pace.min.js}"
+        ></script>
+        <script src="../../static/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.js"
+                th:src="@{/webjars/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js}"
+        ></script>
+        <script src="../../static/assets/libs/jquery-icheck/icheck.min.js"
+                th:src="@{~/assets/libs/jquery-icheck/icheck.min.js}"
+        ></script>
+
+        <!-- Demo Specific JS Libraries -->
+        <script src="../../static/assets/libs/prettify/prettify.js"
+                th:src="@{~/assets/libs/prettify/prettify.js}"
+        ></script>
+        <script src="../../static/assets/js/init.js"
+                th:src="@{~/assets/js/init.js}"
+        ></script>
+        <script src="../../static/js/script.js"
+                th:src="@{~/js/script.js}"
+        ></script>
+
+    </div>
+</body>
+</html>

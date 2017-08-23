@@ -1,0 +1,3 @@
+INSERT INTO WorkMatesDatabase.dbo.project (created_time, description, is_rewarded,  project_area_id, rewarded_coin, title, total_hours,creator_id) VALUES ('2017-07-25 18:11:43.7840000', '采用ssh框架，加入深度学习的博客系统', 0,  null, 122, 'iff博客系统', 60,1);
+INSERT INTO WorkMatesDatabase.dbo.project (created_time, description, is_rewarded, project_area_id, rewarded_coin, title, total_hours,creator_id) VALUES ('2017-07-25 18:14:54.8670000', '加入深度学习的博客系统', 0, null, 12, '课程管理系统', 30,1);
+INSERT INTO WorkMatesDatabase.dbo.project (created_time, description, is_rewarded, project_area_id, rewarded_coin, title, total_hours,creator_id) VALUES ('2017-07-25 18:21:59.9340000', '抓取购物网站有效信息', 0,  null, null, '网络爬虫', 90,2);

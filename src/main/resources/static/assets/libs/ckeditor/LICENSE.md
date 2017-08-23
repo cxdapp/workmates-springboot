@@ -155,7 +155,7 @@ above, provided that you also meet all of these conditions:
     announcement including an appropriate copyright notice and a
     notice that there is no warranty (or else, saying that you provide
     a warranty) and that users may redistribute the program under
-    these conditions, and telling the user how to view a copy of this
+    these conditions, and telling the users how to view a copy of this
     License.  (Exception: if the Program itself is interactive but
     does not normally print such an announcement, your work based on
     the Program is not required to print an announcement.)
@@ -413,7 +413,7 @@ Public License permits more lax criteria for linking other code with
 the library.
 
   We call this license the "Lesser" General Public License because it
-does Less to protect the user's freedom than the ordinary General
+does Less to protect the users's freedom than the ordinary General
 Public License.  It also provides other free software developers Less
 of an advantage over competing non-free programs.  These disadvantages
 are the reason we use the ordinary General Public License for many
@@ -436,7 +436,7 @@ operating system, as well as its variant, the GNU/Linux operating
 system.
 
   Although the Lesser General Public License is Less protective of the
-users' freedom, it does ensure that the user of a program that is
+users' freedom, it does ensure that the users of a program that is
 linked with the Library has the freedom and the wherewithal to run
 that program using a modified version of the Library.
 
@@ -614,7 +614,7 @@ Library is used in it and that the Library and its use are covered by
 this License.  You must supply a copy of this License.  If the work
 during execution displays copyright notices, you must include the
 copyright notice for the Library among them, as well as a reference
-directing the user to the copy of this License.  Also, you must do one
+directing the users to the copy of this License.  Also, you must do one
 of these things:
 
     a) Accompany the work with the complete corresponding
@@ -623,22 +623,22 @@ of these things:
     Sections 1 and 2 above); and, if the work is an executable linked
     with the Library, with the complete machine-readable "work that
     uses the Library", as object code and/or source code, so that the
-    user can modify the Library and then relink to produce a modified
+    users can modify the Library and then relink to produce a modified
     executable containing the modified Library.  (It is understood
-    that the user who changes the contents of definitions files in the
+    that the users who changes the contents of definitions files in the
     Library will not necessarily be able to recompile the application
     to use the modified definitions.)
 
     b) Use a suitable shared library mechanism for linking with the
     Library.  A suitable mechanism is one that (1) uses at run time a
-    copy of the library already present on the user's computer system,
+    copy of the library already present on the users's computer system,
     rather than copying library functions into the executable, and (2)
     will operate properly with a modified version of the library, if
-    the user installs one, as long as the modified version is
+    the users installs one, as long as the modified version is
     interface-compatible with the version that the work was made with.
 
     c) Accompany the work with a written offer, valid for at
-    least three years, to give the same user the materials
+    least three years, to give the same users the materials
     specified in Subsection 6a, above, for a charge no more
     than the cost of performing this distribution.
 
@@ -646,8 +646,8 @@ of these things:
     from a designated place, offer equivalent access to copy the above
     specified materials from the same place.
 
-    e) Verify that the user has already received a copy of these
-    materials or that you have already sent this user a copy.
+    e) Verify that the users has already received a copy of these
+    materials or that you have already sent this users a copy.
 
   For an executable, the required form of the "work that uses the
 Library" must include any data and utility programs needed for
@@ -1006,7 +1006,7 @@ Version 1.1
      You must duplicate the notice in Exhibit A in each file of the Source
      Code.  If it is not possible to put such notice in a particular Source
      Code file due to its structure, then You must include such notice in a
-     location (such as a relevant directory) where a user would be likely
+     location (such as a relevant directory) where a users would be likely
      to look for such a notice.  If You created one or more Modification(s)
      You may add your name as a Contributor to the notice described in
      Exhibit A.  You must also duplicate this License in any documentation
@@ -1158,7 +1158,7 @@ Version 1.1
      license.
 
      8.4.  In the event of termination under Sections 8.1 or 8.2 above,
-     all end user license agreements (excluding distributors and resellers)
+     all end users license agreements (excluding distributors and resellers)
      which have been validly granted by You or any distributor hereunder
      prior to termination shall survive termination.
 

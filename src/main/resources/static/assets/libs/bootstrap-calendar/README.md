@@ -101,7 +101,7 @@ Related forks
 -------------
 
  - [Bic Calendar Full](https://github.com/bichotll/bic_calendar_full)
-    - Just a fork to show the full year. As this one the user can mark ranges.
+    - Just a fork to show the full year. As this one the users can mark ranges.
  - [Bootstrap monthly calendar](http://nbblrr.github.io/bootstrap_monthly_calendar/)
     - A simple monthly calendar.
  - [Bootstrap Calendar](https://github.com/xero/bootstrap_calendar)

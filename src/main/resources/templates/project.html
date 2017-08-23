@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <title>Dashboard | Workmates</title>
+    <th:block th:include="fragments/headerinc :: head" />
+    <!-- Code Highlighter for Demo -->
+    <link href="../static/assets/libs/prettify/github.css" th:href="@{~/assets/libs/prettify/github.css}" rel="stylesheet" />
+    <!-- Extra CSS Libraries Start -->
+    <link href="../static/assets/libs/bootstrap-select/bootstrap-select.min.css" th:href="@{~/assets/libs/prettify/github.css}" rel="stylesheet" type="text/css" />
+    <link href="../static/assets/libs/bootstrap-select2/select2.css" th:href="@{~/assets/libs/bootstrap-select2/select2.css}" rel="stylesheet" type="text/css" />
+    <link href="../static/assets/libs/bootstrap-xeditable/css/bootstrap-editable.css" th:href="@{~/assets/libs/bootstrap-xeditable/css/bootstrap-editable.css}" rel="stylesheet" type="text/css" />
+    <link href="../static/assets/libs/bootstrap-select2/select2.css" th:href="@{~/assets/libs/bootstrap-select2/select2.css}" rel="stylesheet" type="text/css" />
+    <link href="../static/assets/css/style.css" th:href="@{~/assets/css/style.css}" rel="stylesheet" type="text/css" />
+    <!-- Extra CSS Libraries End -->
+    <link href="../static/assets/css/style-responsive.css" th:href="@{~/assets/css/style-responsive.css}" rel="stylesheet" />
+
+    <style>
+        hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 0;
+            border-top: 1px solid #eee;
+        }
+        .card {
+            align-content: center;
+            border-right: 1px solid #eee;;
+        }
+    </style>
+</head>
+
+<body class="fixed-left">
+<!-- Modal Start -->
+<!-- Modal Task Progress -->
+<div class="md-modal md-3d-flip-vertical" id="task-progress">
+    <div class="md-content">
+        <h3><strong>您的项目进度</strong> Information</h3>
+        <div>
+            <p>项目1</p>
+            <div class="progress progress-xs for-modal">
+                <div class="progress-bar progress-bar-success" roles="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                    <span class="sr-only">80&#37; Complete</span>
+                </div>
+            </div>
+            <p>项目2</p>
+            <div class="progress progress-xs for-modal">
+                <div class="progress-bar progress-bar-warning" roles="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+                    <span class="sr-only">65&#37; Complete</span>
+                </div>
+            </div>
+            <p>项目3</p>
+            <div class="progress progress-xs for-modal">
+                <div class="progress-bar progress-bar-info" roles="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 95%">
+                    <span class="sr-only">95&#37; Complete</span>
+                </div>
+            </div>
+            <p>项目4</p>
+            <div class="progress progress-xs for-modal">
+                <div class="progress-bar progress-bar-primary" roles="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100&#37; Complete</span>
+                </div>
+            </div>
+            <p class="text-center">
+                <button class="btn btn-danger btn-sm md-close">Close</button>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Logout -->
+<div class="md-modal md-just-me" id="logout-modal">
+    <div class="md-content">
+        <h3><strong>Logout</strong> Confirmation</h3>
+        <div>
+            <p class="text-center">Are you sure want to logout from this awesome system?</p>
+            <p class="text-center">
+                <button class="btn btn-danger md-close">Nope!</button>
+                <a href="/login" class="btn btn-success md-close">Yeah, I'm sure</a>
+            </p>
+        </div>
+    </div>
+</div>        <!-- Modal End -->
+<!-- Begin page -->
+<div id="wrapper">
+
+    <th:block th:include="fragments/header :: topbar" />
+
+    <th:block th:include="fragments/header :: side-menu" />
+
+    <!-- Start right content -->
+    <div  class="content-page">
+        <!-- ============================================================== -->
+        <!-- Start Content here -->
+        <!-- ============================================================== -->
+        <!--/*@thymesVar id="project" type="com.workmates.Entity.Project"*/-->
+        <div class="content" th:object="${project}">
+
+            <div class="page-heading">
+                <h1><i class="fa fa-th-large"></i><strong>&nbsp;项目细节</strong><small>设计</small></h1>
+            </div>
+            <div class="row">
+
+            <div class="col-md-9 col-sm-9 col-xs-12 portlets ui-sortable">
+                <div class="widget" >
+                    <div class="widget-header">
+                        <h2 th:text="*{title}"><strong>项目名称</strong></h2>
+                        <div class="additional-btn">
+                            <a href="#" class="hidden reload"><i class="icon-ccw-1"></i></a>
+                            <a href="#" class="widget-toggle"><i class="icon-down-open-2"></i></a>
+                            <a href="#" class="widget-close"><i class="icon-cancel-3"></i></a>
+                        </div>
+                    </div>
+                    <div class="widget-content padding">
+                        <div class="row padding">
+                            <div class="col-md-4 panel-blue-1 padding centered">
+                                <span class="name centered"> 已进行时长 </span><br/>
+                                <span class="animate-number text-blue-1 centered"> 2300 </span>
+                            </div>
+                            <div class="col-md-4 panel-blue-1 padding centered">
+                                <span class="name centered"> 参加人员 </span><br/>
+                                <span class="animate-number text-blue-1 centered"> 2000 </span>
+                            </div>
+                            <div class="col-md-4 panel-blue-1 padding centered">
+                                <span class="name centered"> 预计项目持续时间 </span><br/>
+                                <span class="animate-number text-green-1 centered" th:text="*{totalHours}"> 20 </span>
+                            </div>
+                        </div>
+
+                        <div id="mainb" style="height: 350px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative; background-color: transparent;" _echarts_instance_="ec_1503307629372"><div style="position: relative; overflow: hidden; width: 708px; height: 350px; cursor: pointer;"><canvas width="708" height="350" data-zr-dom-id="zr_0" style="position: absolute; left: 0px; top: 0px; width: 708px; height: 350px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas></div><div style="position: absolute; display: none; border-style: solid; white-space: nowrap; z-index: 9999999; transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1), top 0.4s cubic-bezier(0.23, 1, 0.32, 1); background-color: rgba(0, 0, 0, 0.5); border-width: 0px; border-color: rgb(51, 51, 51); border-radius: 4px; color: rgb(255, 255, 255); font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 14px; font-family: Arial, Verdana, sans-serif; line-height: 21px; padding: 5px; left: 397.6px; top: 86px;">7?<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#26B99A"></span>sales : 135.6<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#34495E"></span>purchases : 175.6</div></div>
+
+                        <div>
+
+                            <h4>最近活动</h4>
+
+                            <!-- end of user messages -->
+                            <ul class="box-messages">
+                                <li v-for="i in 3">
+                                    <img src="../static/images/users/user-35.jpg" th:src="@{~/images/users/user-35.jpg}" class="avatar profile-image" alt="Avatar">
+                                    <div class="the-date">
+                                        <h3 class="date text-info">24</h3>
+                                        <p class="month">May</p>
+                                    </div>
+                                    <div class="message">
+                                        <h4 class="heading">Desmond Davison</h4>
+                                        <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
+                                        <br>
+                                        <p class="url">
+                                            <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                                            <a href="#" class="text-primary"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- end of user messages -->
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- start project-detail sidebar -->
+            <div class="col-md-3 col-sm-3 col-xs-12 ui-sortable">
+                <div class="widget green-1">
+                    <div class="widget-header">
+                        <h2><strong>介绍</strong></h2>
+                        <div class="additional-btn">
+                            <a href="#" class="hidden reload"><i class="icon-ccw-1"></i></a>
+                            <a href="#" class="widget-toggle"><i class="icon-down-open-2"></i></a>
+                            <a href="#" class="widget-close"><i class="icon-cancel-3"></i></a>
+                        </div>
+                    </div>
+                    <div class="widget-content">
+                        <div class="panel-body">
+                        <h3 ><i class="fa fa-paint-brush"></i> Gentelella</h3>
+                        <p class="text-white-1">
+                            <a  th:text="*{description}" href="#" id="comments" data-type="textarea" data-pk="1" data-placeholder="项目简介..." data-title="Enter comments" class="editable editable-pre-wrapped editable-click" style="display: inline;color:white;">
+                                在这里写下项目描述……
+                            </a>
+                        </p>
+                        <br>
+
+                        <div>
+                            <h4 style="color: white">项目负责人</h4>
+                            <p th:text="*{creator.getUsername()}">Tony Chicken</p>
+                        </div>
+
+                        <br>
+                        <h4 style="color: white">项目文件</h4>
+                        <ul class="list-unstyled project_files">
+                            <li><a href=""><i class="fa fa-file-word-o"></i> Functional-requirements.docx</a>
+                            </li>
+                            <li><a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a>
+                            </li>
+                            <li><a href=""><i class="fa fa-mail-forward"></i> Email-from-flatbal.mln</a>
+                            </li>
+                            <li><a href=""><i class="fa fa-picture-o"></i> Logo.png</a>
+                            </li>
+                            <li><a href=""><i class="fa fa-file-word-o"></i> Contract-10_12_2014.docx</a>
+                            </li>
+                        </ul>
+                        <br>
+
+                        <div class="text-center mtop20">
+                            <a href="#" class="btn btn-sm btn-blue-1">添加文件</a>
+                            <a href="#" class="btn btn-sm btn-success">联系</a>
+                        </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end project-detail sidebar -->
+            </div>
+        </div>
+        <!--end of content-->
+    </div>
+    <!--end of Content-Page-->
+</div>
+<!--end of Wrapper-->
+<th:block th:include="fragments/header :: footer" />
+<!-- Page Specific JS Libraries -->
+<script src="../static/assets/libs/bootstrap-select/bootstrap-select.min.js" th:src="@{~/assets/libs/bootstrap-select/bootstrap-select.min.js}"></script>
+<script src="../static/assets/libs/bootstrap-inputmask/inputmask.js" th:src="@{~/assets/libs/bootstrap-inputmask/inputmask.js}"></script>
+<script src="../static/assets/libs/bootstrap-xeditable/js/bootstrap-editable.min.js" th:src="@{~/assets/libs/bootstrap-xeditable/js/bootstrap-editable.min.js}"></script>
+<script src="../static/assets/libs/bootstrap-xeditable/demo/jquery.mockjax.js" th:src="@{~/assets/libs/bootstrap-xeditable/demo/jquery.mockjax.js}"></script>
+<script src="../static/assets/libs/bootstrap-xeditable/demo/demo-mock.js" th:src="@{~/assets/libs/bootstrap-xeditable/demo/demo-mock.js}"></script>
+<script src="../static/assets/libs/bootstrap-select2/select2.min.js" th:src="@{~/assets/libs/bootstrap-select2/select2.min.js}"></script>
+<script src="../static/assets/libs/jquery-clndr/moment-2.5.1.js" th:src="@{~/assets/libs/jquery-clndr/moment-2.5.1.js}"></script>
+<script src="../static/assets/libs/bootstrap-typeahead/bootstrap3-typeahead.min.js" th:src="@{~/assets/libs/bootstrap-typeahead/bootstrap3-typeahead.min.js}"></script>
+<script src="../static/assets/libs/ckeditor/ckeditor.js" th:src="@{~/assets/libs/ckeditor/ckeditor.js}"></script>
+<script src="../static/assets/libs/ckeditor/adapters/jquery.js" th:src="@{~/assets/libs/ckeditor/adapters/jquery.js}"></script>
+<script src="../static/assets/js/pages/advanced-forms.js" th:src="@{~/assets/js/pages/advanced-forms.js}"></script>
+<script type="text/javascript">
+    //<![CDATA[
+    new Vue({
+        el:"#wrapper",
+        data:{
+            username:'',
+            projectList:[],
+            actoken:''
+        },
+        mounted:function () {
+            this.actoken = getCookie('access_token');
+            var app = this;
+//            axios.all([app.getUserName(), app.getProjectList()])
+//                .then(axios.spread(function (uname, proList) {
+//                    app.username = uname.data;
+//                    app.projectList = proList.data;
+//                    sessionStorage.setItem("username",uname);
+//                }));
+        },
+        methods:{
+            getUserName:function () {
+                return axios({
+                    method:'get',
+                    url:'/api/getusername',
+                    params:{
+                        access_token:getCookie('access_token')
+                    }
+                });
+            },
+            getProjectList:function () {
+                return axios({
+                    method:'get',
+                    url:'/papi/all',
+                    params:{
+                        access_token:getCookie('access_token')
+                    }
+                });
+            }
+
+        }
+    })
+    //]]>
+</script>
+</body>
+</html>
