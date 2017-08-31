@@ -3,7 +3,9 @@ package com.workmates.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Users {
@@ -15,10 +17,24 @@ public class Users {
     private String password;
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<Role> roles;
-
     @OneToOne
     @PrimaryKeyJoinColumn
     private UserInfo userInfo;
+    @ManyToMany(mappedBy = "principals")
+    private Set<Step> steps = new HashSet<>();
+
+
+
+
+    public Users() {
+        super();
+    }
+
+    public Users(String username, String password, List<Role> roles) {
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+    }
 
     public UserInfo getUserInfo() {
         return userInfo;
@@ -28,15 +44,6 @@ public class Users {
         this.userInfo = userInfo;
     }
 
-    public Users() {
-        super();
-    }
-
-    public Users(String username, String password, List<Role> role) {
-        this.username = username;
-        this.password = password;
-        this.roles = role;
-    }
 
     public Long getId() {
         return id;
@@ -69,5 +76,14 @@ public class Users {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    @JsonIgnore
+    public Set<Step> getSteps() {
+        return steps;
+    }
+
+    public void setSteps(Set<Step> steps) {
+        this.steps = steps;
     }
 }

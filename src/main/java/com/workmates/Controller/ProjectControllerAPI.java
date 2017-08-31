@@ -1,17 +1,18 @@
 package com.workmates.Controller;
 
+import com.workmates.Entity.LeaderCheck;
 import com.workmates.Entity.Project;
+import com.workmates.Entity.Role;
 import com.workmates.Entity.Users;
 import com.workmates.Service.ProjectService;
 import com.workmates.Service.UserService;
 import com.workmates.config.CustomUserDetails;
+import com.workmates.exception.MyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.*;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,15 +37,34 @@ public class ProjectControllerAPI {
 
     @GetMapping(value = "/created")
     public List<Project> getProjects1(){
-        CustomUserDetails currentUser = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Users user = userService.getUser(currentUser.getUsername());
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Users user = userService.getUser(username);
         return projectService.findMasterProjectsByUser(user);
     }
 
     @GetMapping(value = "/participated")
     public List<Project> getProjects2(){
-        CustomUserDetails currentUser = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Users user = userService.getUser(currentUser.getUsername());
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Users user = userService.getUser(username);
         return projectService.findParticipateProjectsByUser(user);
     }
+
+    @RequestMapping(value = "/leader_check",method = RequestMethod.GET)
+    public List<LeaderCheck> getLeaderCheckList() throws MyException {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Users user = userService.getUser(username);
+        boolean flag = false;
+        for (Role role:
+             user.getRoles()) {
+            if(role.getName().contains("ACTUATOR")) {
+                flag = true;
+            }
+        }
+        if (flag) {
+            return projectService.getLeaderCheck(user);
+        } else {
+            throw new MyException("未授权！");
+        }
+    }
+
 }

@@ -37,14 +37,17 @@ public class UserController {
     @RequestMapping(value = "/{username}")
     public String check(@PathVariable String username,ModelMap modelMap){
         Users user = userService.getUser(username);
+        String myname = SecurityContextHolder.getContext().getAuthentication().getName();
         modelMap.addAttribute("user", user);
-        modelMap.addAttribute("name", username);
+        modelMap.addAttribute("myname", myname);
         return "/personal";
     }
-//    @GetMapping(value = "/logouts")
-//    public void logout(@RequestParam(value = "access_token") String accessToken){
-//        tokenStore.removeAccessToken(tokenStore.readAccessToken(accessToken));
-//    }
+
+    @RequestMapping(value = "/settings")
+    public String settings(){
+        return "";
+    }
+
 
 
 }

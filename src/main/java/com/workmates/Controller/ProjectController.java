@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+
 //个人中心，及项目管理
 @Controller
 @RequestMapping(value = "/u")
@@ -35,6 +37,11 @@ public class ProjectController {
         Project project1 = projectService.saveAndGetProject(project);
         model.addAttribute("project", project1);
         return "redirect:/u/"+uname+"/p/"+project1.getId();
+    }
+
+    @RequestMapping(value = "/uploadfile",method = RequestMethod.POST)
+    public String uploadfile(File file){
+        return "";
     }
 
     @RequestMapping(value = "/{username}/p/{proId}",method = RequestMethod.POST)

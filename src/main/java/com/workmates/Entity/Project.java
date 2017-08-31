@@ -5,6 +5,8 @@ import com.workmates.dto.Group;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Project")
@@ -22,23 +24,21 @@ public class Project {
     private Integer rewardedCoin;
     private String title;
     private String description;
-    private Integer projectAreaId;
+    private String projectArea;
     private Integer status;
+    @OneToMany(mappedBy = "project",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    private Set<Step> steps = new HashSet<>();
 
     public Project() {
         super();
     }
 
-    public Project(Users creator, Date createdTime, Integer totalHours, Boolean isRewarded, Integer rewardedCoin, String title, String description, Integer projectAreaId, Integer status) {
-        this.creator = creator;
-        this.createdTime = createdTime;
-        this.totalHours = totalHours;
-        this.isRewarded = isRewarded;
-        this.rewardedCoin = rewardedCoin;
-        this.title = title;
-        this.description = description;
-        this.projectAreaId = projectAreaId;
-        this.status = status;
+    public Set<Step> getSteps() {
+        return steps;
+    }
+
+    public void setSteps(Set<Step> steps) {
+        this.steps = steps;
     }
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -84,13 +84,6 @@ public class Project {
         this.description = description;
     }
 
-    public Integer getProjectAreaId() {
-        return projectAreaId;
-    }
-    public void setProjectAreaId(Integer projectAreaId) {
-        this.projectAreaId = projectAreaId;
-    }
-
     public Long getId() {
         return id;
     }
@@ -121,5 +114,13 @@ public class Project {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getProjectArea() {
+        return projectArea;
+    }
+
+    public void setProjectArea(String projectArea) {
+        this.projectArea = projectArea;
     }
 }

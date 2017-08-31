@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:v-on="http://www.w3.org/1999/xhtml"
+      xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Dashboard | Workmates</title>
+    <th:block th:include="fragments/headerinc :: head" />
+    <!-- Code Highlighter for Demo -->
+    <link href="../static/assets/libs/prettify/github.css" th:href="@{~/assets/libs/prettify/github.css}" rel="stylesheet" />
+    <!-- Extra CSS Libraries Start -->
+    <link href="../static/assets/css/style.css" th:href="@{~/assets/css/style.css}" rel="stylesheet" type="text/css" />
+    <!-- Extra CSS Libraries End -->
+    <link href="../static/assets/css/style-responsive.css" th:href="@{~/assets/css/style-responsive.css}" rel="stylesheet" />
+</head>
+<body class="fixed-left">
+<!-- Modal Start -->
+<!-- Modal Task Progress -->
+<div class="md-modal md-3d-flip-vertical" id="task-progress">
+    <div class="md-content">
+        <h3><strong>您的项目进度</strong> Information</h3>
+        <div>
+            <p>项目1</p>
+            <div class="progress progress-xs for-modal">
+                <div class="progress-bar progress-bar-success" roles="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                    <span class="sr-only">80&#37; Complete</span>
+                </div>
+            </div>
+            <p>项目2</p>
+            <div class="progress progress-xs for-modal">
+                <div class="progress-bar progress-bar-warning" roles="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+                    <span class="sr-only">65&#37; Complete</span>
+                </div>
+            </div>
+            <p>项目3</p>
+            <div class="progress progress-xs for-modal">
+                <div class="progress-bar progress-bar-info" roles="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 95%">
+                    <span class="sr-only">95&#37; Complete</span>
+                </div>
+            </div>
+            <p>项目4</p>
+            <div class="progress progress-xs for-modal">
+                <div class="progress-bar progress-bar-primary" roles="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">100&#37; Complete</span>
+                </div>
+            </div>
+            <p class="text-center">
+                <button class="btn btn-danger btn-sm md-close">Close</button>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Logout -->
+<div class="md-modal md-just-me" id="logout-modal">
+    <div class="md-content">
+        <h3><strong>Logout</strong> Confirmation</h3>
+        <div>
+            <p class="text-center">Are you sure want to logout from this awesome system?</p>
+            <p class="text-center">
+                <button class="btn btn-danger md-close">Nope!</button>
+                <a href="login" class="btn btn-success md-close">Yeah, I'm sure</a>
+            </p>
+        </div>
+    </div>
+</div>        <!-- Modal End -->
+<!-- Begin page -->
+<div id="wrapper">
+
+    <th:block th:include="fragments/header :: topbar" />
+
+    <th:block th:include="fragments/header :: side-menu" />
+
+    <!-- Start right content -->
+    <div class="content-page">
+        <!-- ============================================================== -->
+        <!-- Start Content here -->
+        <!-- ============================================================== -->
+        <div class="content">
+            <!-- Page Heading Start -->
+            <div class="page-heading">
+                <div class="page-heading">
+                    <div class="padding">
+                        <ul id="demo1" class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#notice" data-toggle="tab" aria-expanded="true">所有通知 <span class="label label-success">{{noticeList.length}}</span></a>
+                            </li>
+                            <li class="">
+                                <a href="#messages" data-toggle="tab" aria-expanded="false">所有私信 <span class="badge badge-primary">12</span></a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content ">
+                            <div class="tab-pane fade active in" id="notice" style="margin: 20px 0 20px;">
+                                <div class="the-timeline">
+                                    <ul>
+                                        <li v-for="notice in noticeList">
+                                            <div class="the-date">
+                                                <span>{{notice.day}}</span>
+                                                <small>{{notice.month}}</small>
+                                            </div>
+                                            <h4>{{notice.pusher}}</h4>
+                                            <p>
+                                                <a v-bind:href="'/user/'+notice.pusher" class="text-primary btn-link" style="cursor: pointer">{{notice.pusher}}</a>{{notice.statement}}
+                                            </p>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div> <!-- / .tab-notice -->
+                            <div class="tab-pane fade" id="messages" style="margin: 20px 0 20px;">
+                                <dl class="dl-horizontal" v-for="i in 10">
+                                    <dt >Description lists</dt>
+                                    <dd >A description list is perfect for defining terms.</dd>
+                                </dl>
+                            </div> <!-- / .tab-messages -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End content here -->
+        <!-- ============================================================== -->
+
+    </div>
+</div>
+<th:block th:include="fragments/header :: footer" />
+<script type="text/javascript">
+    //<![CDATA[
+    new Vue({
+        el:"#wrapper",
+        data:{
+            noticeList:[]
+        },
+        mounted:function () {
+            axios.get('/api/notice?access_token='+getCookie('access_token'))
+                .then(function (res) {
+                    this.noticeList = res.data;
+                }.bind(this))
+                .catch(function (res) {
+
+                }.bind(this))
+        },
+        methods:{
+
+
+        }
+    })
+    //]]>
+</script>
+<script src="../static/assets/js/pages/tabs-accordions.js" th:src="@{~/assets/js/pages/tabs-accordions.js}"></script>
+</body>
+</html>

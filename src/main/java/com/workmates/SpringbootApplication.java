@@ -5,6 +5,9 @@ import com.workmates.Entity.Users;
 import com.workmates.Repository.UserRepository;
 import com.workmates.Service.UserService;
 import com.workmates.config.CustomUserDetails;
+import com.workmates.dto.Notice;
+import com.workmates.dto.NoticeQueue;
+import com.workmates.dto.NoticeType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,7 +15,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.Arrays;
+import java.util.*;
 
 @SpringBootApplication
 public class SpringbootApplication {
@@ -21,6 +24,18 @@ public class SpringbootApplication {
 	private PasswordEncoder passwordEncoder;
 
 	public static void main(String[] args) {
+        List<Notice> list = new ArrayList<>();
+        long t = System.currentTimeMillis();
+        Random rnd = new Random();
+        for (int i = 0; i < 20; i++) {
+            Notice notice = new Notice();
+            notice.setPusher("syq");
+            notice.setTarget("user");
+            notice.setNoticeTime(new Date(t-rnd.nextInt(999999999)));
+            notice.setNoticeType(rnd.nextInt(3)>1?NoticeType.FOLLOW:NoticeType.MESSAGE);
+            list.add(notice);
+        }
+        NoticeQueue.instance.enQueue(list);
 		SpringApplication.run(SpringbootApplication.class, args);
 	}
 

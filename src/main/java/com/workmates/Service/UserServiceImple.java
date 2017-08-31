@@ -58,13 +58,13 @@ public class UserServiceImple implements UserService {
 
     //根据用户id查找朋友信息
     @Override
-    public List<UserInfo> getAllFriendsByMasterId(Long masterId) {
-        List<UserInfo> results=  new ArrayList<>();
+    public List<Users> getAllFriendsByMasterId(Long masterId) {
+        List<Users> results=  new ArrayList<>();
         List<FriendsRelationship> frs = friendsRelationRepository.findByMasterId(masterId);
         if (frs.size() > 0) {
             for (FriendsRelationship fr :
                     frs) {
-                UserInfo user = userInfoRepo.findOne(fr.getFriendId());
+                Users user = userRepo.findOne(fr.getFriendId());
                 results.add(user);
             }
             return results;

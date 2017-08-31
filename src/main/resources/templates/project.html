@@ -11,9 +11,11 @@
     <link href="../static/assets/libs/bootstrap-xeditable/css/bootstrap-editable.css" th:href="@{~/assets/libs/bootstrap-xeditable/css/bootstrap-editable.css}" rel="stylesheet" type="text/css" />
     <link href="../static/assets/libs/bootstrap-select2/select2.css" th:href="@{~/assets/libs/bootstrap-select2/select2.css}" rel="stylesheet" type="text/css" />
     <link href="../static/assets/css/style.css" th:href="@{~/assets/css/style.css}" rel="stylesheet" type="text/css" />
+    <link href="../static/assets/libs/jquery-nestable/jquery.nestable.css" th:href="@{~/assets/libs/jquery-nestable/jquery.nestable.css}" rel="stylesheet" type="text/css" />
+
     <!-- Extra CSS Libraries End -->
     <link href="../static/assets/css/style-responsive.css" th:href="@{~/assets/css/style-responsive.css}" rel="stylesheet" />
-
+    <link href="../static/css/horizBarChart.css" th:href="@{~/css/horizBarChart.css}" rel="stylesheet" />
     <style>
         hr {
             margin-top: 20px;
@@ -125,7 +127,17 @@
                             </div>
                         </div>
 
-                        <div id="mainb" style="height: 350px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative; background-color: transparent;" _echarts_instance_="ec_1503307629372"><div style="position: relative; overflow: hidden; width: 708px; height: 350px; cursor: pointer;"><canvas width="708" height="350" data-zr-dom-id="zr_0" style="position: absolute; left: 0px; top: 0px; width: 708px; height: 350px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></canvas></div><div style="position: absolute; display: none; border-style: solid; white-space: nowrap; z-index: 9999999; transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1), top 0.4s cubic-bezier(0.23, 1, 0.32, 1); background-color: rgba(0, 0, 0, 0.5); border-width: 0px; border-color: rgb(51, 51, 51); border-radius: 4px; color: rgb(255, 255, 255); font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 14px; font-family: Arial, Verdana, sans-serif; line-height: 21px; padding: 5px; left: 397.6px; top: 86px;">7?<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#26B99A"></span>sales : 135.6<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#34495E"></span>purchases : 175.6</div></div>
+                        <div class="panel">
+                            <div class="sales-report-data">
+                                <div th:each="step : *{steps}" >
+                                    <span class="pull-left" th:text="${step.stepTitle}">Title</span><span class="pull-right">65 / 174</span>
+                                    <div class="progress progress-xs" style="margin-left: 5px;margin-right: 5px ">
+                                        <div style="width: 38%;" class="progress-bar bg-blue-2"></div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div>
 
@@ -170,9 +182,9 @@
                     </div>
                     <div class="widget-content">
                         <div class="panel-body">
-                        <h3 ><i class="fa fa-paint-brush"></i> Gentelella</h3>
+                        <h3 style="color: white"><i class="fa fa-paint-brush" style="color: white"></i> Gentelella</h3>
                         <p class="text-white-1">
-                            <a  th:text="*{description}" href="#" id="comments" data-type="textarea" data-pk="1" data-placeholder="项目简介..." data-title="Enter comments" class="editable editable-pre-wrapped editable-click" style="display: inline;color:white;">
+                            <a  th:text="*{description}" href="#" id="comments" data-type="textarea" data-pk="1" data-placeholder="项目简介..." data-title="Enter comments" class="editable editable-pre-wrapped editable-click" style="display: inline;color:white;    text-decoration: none;border-bottom: none;font-size: large;">
                                 在这里写下项目描述……
                             </a>
                         </p>
@@ -186,15 +198,15 @@
                         <br>
                         <h4 style="color: white">项目文件</h4>
                         <ul class="list-unstyled project_files">
-                            <li><a href=""><i class="fa fa-file-word-o"></i> Functional-requirements.docx</a>
+                            <li><a href="" style="color: white"><i class="fa fa-file-word-o"></i> Functional-requirements.docx</a>
                             </li>
-                            <li><a href=""><i class="fa fa-file-pdf-o"></i> UAT.pdf</a>
+                            <li><a href="" style="color: white"><i class="fa fa-file-pdf-o"></i> UAT.pdf</a>
                             </li>
-                            <li><a href=""><i class="fa fa-mail-forward"></i> Email-from-flatbal.mln</a>
+                            <li><a href="" style="color: white"><i class="fa fa-mail-forward"></i> Email-from-flatbal.mln</a>
                             </li>
-                            <li><a href=""><i class="fa fa-picture-o"></i> Logo.png</a>
+                            <li><a href="" style="color: white"><i class="fa fa-picture-o"></i> Logo.png</a>
                             </li>
-                            <li><a href=""><i class="fa fa-file-word-o"></i> Contract-10_12_2014.docx</a>
+                            <li><a href="" style="color: white"><i class="fa fa-file-word-o"></i> Contract-10_12_2014.docx</a>
                             </li>
                         </ul>
                         <br>
@@ -241,12 +253,7 @@
         mounted:function () {
             this.actoken = getCookie('access_token');
             var app = this;
-//            axios.all([app.getUserName(), app.getProjectList()])
-//                .then(axios.spread(function (uname, proList) {
-//                    app.username = uname.data;
-//                    app.projectList = proList.data;
-//                    sessionStorage.setItem("username",uname);
-//                }));
+
         },
         methods:{
             getUserName:function () {
@@ -272,5 +279,9 @@
     })
     //]]>
 </script>
+<script src="../static/assets/libs/jquery-nestable/jquery.nestable.js" th:src="@{~/assets/libs/jquery-nestable/jquery.nestable.js}"></script>
+<script src="../static/assets/js/pages/nested-list.js" th:src="@{~/assets/js/pages/nested-list.js}"></script>
+<script th:src="@{~/assets/js/pages/tabs-accordions.js}" src="../static/assets/js/pages/tabs-accordions.js"></script>
+<script src="../static/js/jquery.horizBarChart.min.js" th:src="@{~/js/jquery.horizBarChart.min.js}"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:v-on="http://www.w3.org/1999/xhtml"
+      xmlns:v-bind="http://www.w3.org/1999/xhtml">
     <head>
         <title>Dashboard | Workmates</title>
         <th:block th:include="fragments/headerinc :: head" />
@@ -81,7 +82,8 @@
                 <!-- Page Heading Start -->
                 <div class="page-heading">
                     <h1><i class='fa fa-magic'></i>新建项目</h1>
-                    <h3>先填写项目基本信息</h3>            	</div>
+                    <h3>先填写项目基本信息</h3>
+                </div>
                 <!-- Page Heading End-->
                 <div class="row">
                     <div class="col-md-12 portlets">
@@ -96,79 +98,117 @@
                                                 <input type="text" v-model="project.title" id="title" placeholder="比如：轻博客系统" class="form-control"/>
                                             </div>
                                             <div class="form-group">
-                                                <label for="projectArea">应用领域</label>
-                                                <a href="#" id="projectArea" v-model="project.projectArea" data-type="select2" data-pk="1" data-title="Enter tags" class="editable editable-click" style="display: inline;">Java, 人工智能</a>
+                                                <label for="tags">应用领域</label>
+                                                <a href="#"  id="tags"  data-type="select2" data-pk="1" data-title="Enter tags" class="editable editable-click" style="display: inline;">{{project.projectarea}}</a>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="notes">
                                                 <h4><strong>项目描述</strong></h4>
-                                                <textarea rows="12" cols="50" class="border-white-1" v-model="project.description">
+                                                <textarea rows="12" cols="50" class="border-green-1" v-model="project.description">
                                                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
                                                     Duis autem vel eum iriure dolor in hendrerit in vulputate.
 
-                                                </textarea>
+                                            </textarea>
                                             </div>
                                         </div>
                                     </div>
                                 </section>
                                 <section class="step" data-step-title="Second step">
                                     <div class="row">
+                                        <div class="col-md-6">
                                             <div class="icon-added form-group">
                                                 <i class="fa fa-search"></i>
-                                                <input type="text" v-model="key" v-on:input="loadFriend(key)" placeholder="邮箱/手机/昵称/用户名" class="form-control"/>
+                                                <input type="text" v-model="key" placeholder="邮箱/手机/昵称/用户名" class="form-control"/>
                                             </div>
                                             <div class="form-group">
-                                                    <span>最近联系人</span><br/>
-                                                    <a class="" href="javascript:void(0);" v-for="fr in myFirnds">
-                                                        <span class="" v-text="fr.username">小明</span>
-                                                    </a>
+                                                <span>最近联系人</span><br/>
+                                                <a class="" href="javascript:void(0);" v-for="fr in recentfriends">
+                                                    <span class="" v-text="fr.username">小明</span>
+                                                </a>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="notes">
+                                        <div class="col-md-6">
+                                            <div class="notes" style="height: 300px;">
                                                 <!--放左侧点击之后要显示的内容-->
-                                                <ul class="">
-                                                    <li>已选成员： </li>
-                                                    <li class="">
-                                                        <span class="">chenxiangdong</span>
+                                                <h4>{{tip}}</h4>
+                                                <div v-for=" sf in searchfriends"  style="padding: 10px">
+                                                <a href="#" class="btn btn-success" v-on:click="chosefriend(sf)">{{sf.userInfo.nickName}}<small>{{sf.username}}</small></a>
+                                                </div>
+                                                <h4>已选成员： </h4>
+                                                <ul class="" style="margin-bottom: 5px">
+                                                    <li v-for="cf in chosenfriends">
+                                                        <h4><span class="text-green-1">{{cf.username}}</span></h4>
                                                     </li>
                                                     <!-- ngRepeat: friend in selected_users -->
                                                 </ul>
                                             </div>
 
                                         </div>
+                                    </div>
+
                                 </section>
                                 <section class="step" data-step-title="Third step">
-                                    <div class="row">
-                                        <div class="col-sm-6">
+                                    <h3><i class="icon-list"></i> 增加步骤</h3>
+                                    <div >
+                                    <div class="row" v-for="(step,i) in project.steps" style="position: relative;border-top: 1px solid #ddd;">
+                                        <span style="position: absolute;top: 5px;left: -15px;cursor: pointer;font-size:x-large;padding-left:5px" class="badge bg-green-1 pull-right">{{i+1}}</span>
+                                        <span v-if="i!=0" v-on:click="project.steps.pop()" style="position: absolute;top: 5px;right: -12px;cursor: pointer;font-size:x-large;padding-left:5px" class="glyphicon glyphicon-remove-circle"></span>
+                                        <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="inputFirstname">Firstname</label>
-                                                <input type="text" id="inputFirstname" placeholder="Firstname" class="form-control"/>
+                                                <br/>
+                                                <label for="inputTitle">标题</label>
+                                                <input type="text" id="inputTitle" v-model="step.step_title" placeholder="例：需求分析" class="form-control"/>
                                             </div>
                                             <div class="form-group">
-                                                <label for="inputCity">City</label>
-                                                <input type="text" id="inputCity" placeholder="City" class="form-control"/>
+                                                <label for="des">说明</label>
+                                                <textarea id="des" v-model="step.step_content" class="form-control input-large" placeholder="Your comments here..." rows="7"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dangan">文件档案&nbsp;&nbsp;<a v-on:click="addfile(step)" style="font-size: x-small;" class="glyphicon glyphicon-plus btn bg-green-1 "></a></label>
+                                                <div id="dangan" class="input-group" v-for="(url,j) in step.file_urls">
+                                                    <input type="text" class="form-control" v-model="url.name" />
+                                                    <div class="input-group-btn">
+                                                            <select class="form-control selectpicker" v-model="filetype.name" v-on:change="changetype(url)">
+                                                                <option v-for="ft in filetypes">{{ft.name}}</option>
+                                                                <option class="ui-menu-divider"></option>
+                                                                <option><a href="#" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm" ><i class="icon-plus-squared">自定义</i></a></option>
+                                                            </select>
+                                                    </div>
+                                                    <span class="badge" style="margin: 12px">{{url.type}}</span>
+                                                    <span class="glyphicon glyphicon-remove-sign" v-on:click="step.file_urls.pop()" style="margin: 5px"></span>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="notes">
-                                                <h4><strong>Example</strong> note</h4>
-                                                <p style="text-align: justify">
-                                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-                                                </p>
-                                                <ol>
-                                                    <li>Duis autem vel eum iriure dolor in hendrerit in vulputate</li>
-                                                    <li>Lorem ipsum dolor sit amet</li>
-                                                    <li>Sed diam nonummy nibh euismod tincidunt</li>
-                                                    <li>Sonsectetuer adipiscing elit</li>
-                                                    <li>Tincidunt ut laoreet dolore magna aliquam erat volutpat</li>
-                                                </ol>
-                                                <p style="text-align: justify">
-                                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-                                                </p>
+                                        <div class="col-md-6">
+                                            <div class="">
+                                                <br/>
+                                                <h4><strong>负责人</strong> </h4>
+                                                <div class="form-group">
+                                                    <label>（可多选）</label>
+                                                    <select class="form-control" v-model="principal.username" v-on:change="addprincipal(step)">
+                                                        <option selected value="">-- 选择一个成员 --</option>
+                                                        <option v-for="fr in chosenfriends" v-bind:value="fr.username">{{fr.username}}</option>
+                                                    </select>
+                                                    <small data-bv-validator="notEmpty" data-bv-validator-for="country" class="help-block" style="display: none;">The country is required and can't be empty</small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <ul>已选成员： </ul>
+                                                    <ul class="" style="margin-bottom: 5px;">
+                                                        <li class="green-1" v-for="pr in step.principals">
+                                                            <span class="text-green-1" v-on:click="step.principals.pop()">{{pr.username}}</span>
+                                                        </li>
+                                                        <!-- ngRepeat: friend in selected_users -->
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
+
+                                    </div>
+                                    </div>
+
+                                    <div v-on:click="addstep()" class="notes" style="text-align: center;line-height: 32px;width: 380px;margin: 0 auto 10px;cursor: pointer;">
+                                        <i class="icon-plus-3"></i>&nbsp;添加新任务
                                     </div>
                                 </section>
                             </form>
@@ -186,6 +226,27 @@
             <!-- ============================================================== -->
 
         </div>
+        <!-- /.modal-content -->
+        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" >
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="mySmallModalLabel">自定义文件类型</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <input placeholder="例: .txt" type="text" class="form-control" v-model="filetype.name"/>
+                            <div class="input-group-btn">
+                            <button v-on:click="addtype()" type="button" class="btn glyphicon glyphicon-ok"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
     </div>
         <th:block th:include="fragments/header :: footer" />
 	<!-- Page Specific JS Libraries -->
@@ -202,26 +263,128 @@
         <script src="../static/assets/libs/ckeditor/ckeditor.js" th:src="@{~/assets/libs/ckeditor/ckeditor.js}"></script>
         <script src="../static/assets/libs/ckeditor/adapters/jquery.js" th:src="@{~/assets/libs/ckeditor/adapters/jquery.js}"></script>
         <script src="../static/assets/js/pages/advanced-forms.js" th:src="@{~/assets/js/pages/advanced-forms.js}"></script>
-
+        <script src="https://cdn.bootcss.com/lodash.js/4.17.4/lodash.min.js" th:src="@{/webjars/lodash/4.17.4/dist/lodash.min.js}"></script>
+        <script src="../static/assets/js/apps/notes.js" th:src="@{~/assets/js/apps/notes.js}"></script>
         <script type="text/javascript">
             //<![CDATA[
-            new Vue({
+            var create = new Vue({
                 el:"#wrapper",
                 data:{
-                    username:'',
-                    project:'',
-                    myFirnds:[],
-                    chosenFriends:[],
-                    actoken:''
+                    project:{
+                        title:"cxd",
+                        description:"description",
+                        totalHours:0,
+                        projectarea:"Java,人工智能",
+                        status:1,
+                        steps:[{
+                            principals:[],
+                            step_title:'',
+                            step_content:'',
+                            deadline_hours:0,
+                            step_order:1,
+                            file_urls:[]
+                        }]
+                    },
+                    searchfirnds:[],
+                    chosenfriends:[],
+                    recentfriends:[],
+                    principal: {
+                        username:''
+                    },
+                    key:'',
+                    tip:'',
+                    filetypes:[{name:'.txt'},{name:'.pptx'},{name:'.docx'},{name:'.png/jpg'}],
+                    filetype:{name:''},
+                    file_url:{name:'',type:''}
+                },
+                watch:{
+                    key: function (newv,old) {
+                        this.zipCity = '';
+                        if(newv.length>old.length||old.length===0) {
+                            this.lookupFriends();
+                        }else {
+                            this.searchfirnds = [];
+                            this.tip = '';
+                        }
+                    },
+//                    principal:function (newone) {
+//                        this.astep.principals.push(this.principal);
+//                    }
                 },
                 mounted:function () {
-                    this.actoken = getCookie('access_token');
 
                 },
                 methods:{
-                    saveProject:function(){
+//                    Note：避免重复添加的tag
+                    chosefriend:function (sf) {
+                        if(this.chosenfriends.length===0||sf.tag != true) {
+                            this.chosenfriends.push(sf);
+                            sf.tag = true;
+                        }
+                    },
+                    lookupFriends: _.debounce(
+                        function () {
+                            var app = this;
+                            this.tip = "搜索好友中……";
+                            axios.get('http://localhost:8080/api/searchfriends/'+app.key,
+                                {
+                                    params:{
+                                        access_token:getCookie('access_token')
+                                    }
+                                }
+                            ).then(function (response) {
+                                    app.searchfriends = response.data;
+                                    app.tip = "找到"+response.data.length+"个。";
+                                })
+                                .catch(function (error) {
+                                    app.tip = "没有搜索到。";
+                                })
+                        },500
+                    ),
 
+                    addstep:function () {
+                        var temp = {
+                            principals:[],
+                            step_title:'',
+                            step_content:'',
+                            deadline_hours:0,
+                            step_order:this.project.steps.length+1,
+                            file_urls:[]
+                        };
+                        this.project.steps.push(temp);
+                    },
+//                    Note：select传参数 using both v-model and v-on:change
+                    addfile:function (step) {
+                        var temp = {name:'',type:this.filetype.name};
+                        step.file_urls.push(temp);
+                    },
+                    changetype:function (url) {
+                        url.type = this.filetype.name;
+                    },
+                    addtype:function () {
+                        var temp = {name:this.filetype.name};
+                        this.filetypes.push(temp);
+                    },
+                    addprincipal:function (step) {
+                        var temp = {username:this.principal.username};
+                        var flag=0;
+                        if(!temp.username.startsWith('-')) {
+                            if(step.principals.length===0){
+                                step.principals.push(temp);
+                            }else {
+                                for(var pri in step.principals){
+                                    if(pri.username === temp.username){
+                                        flag=1;
+                                    }
+                                }
+                                if(flag===0){
+                                    step.principals.push(temp);
+                                }
+                            }
+                        }
                     }
+
+
 
                 }
             })

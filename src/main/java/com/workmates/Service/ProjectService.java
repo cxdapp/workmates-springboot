@@ -1,9 +1,6 @@
 package com.workmates.Service;
 
-import com.workmates.Entity.Project;
-import com.workmates.Entity.Step;
-import com.workmates.Entity.USRoles;
-import com.workmates.Entity.Users;
+import com.workmates.Entity.*;
 
 import java.util.List;
 
@@ -29,4 +26,7 @@ public interface ProjectService {
     void saveProject(Project project);
     Project saveAndGetProject(Project project);
     Project findProjectById(Long id);
+
+    //获得leader_check组长审核表
+    List<LeaderCheck> getLeaderCheck(Users receiver);
 }

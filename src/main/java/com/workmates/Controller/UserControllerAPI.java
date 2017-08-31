@@ -1,13 +1,20 @@
 package com.workmates.Controller;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.workmates.Entity.UserInfo;
 import com.workmates.Entity.Users;
 import com.workmates.Service.UserService;
+import com.workmates.config.CustomUserDetails;
+import com.workmates.dto.Notice;
+import com.workmates.dto.NoticeQueue;
+import com.workmates.dto.NoticeType;
 import jdk.nashorn.internal.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.lang.model.type.NoType;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,6 +23,37 @@ public class UserControllerAPI {
 
     @Autowired
     private UserService userService;
+
+
+    @RequestMapping(value = "/notice",method = RequestMethod.GET)
+    public List<Notice> notifyFront(){
+        return NoticeQueue.instance.getSortableNoticeList();
+    }
+    @RequestMapping(value = "/notice",method = RequestMethod.POST)
+    public String notifyFront(String pusher,String target,String noticeType){
+        Notice notice = new Notice();
+        notice.setPusher(pusher);
+        notice.setTarget(target);
+        switch (noticeType) {
+            case "LIKE":
+                notice.setNoticeType(NoticeType.LIKE);
+                break;
+            case "COMMENT":
+                notice.setNoticeType(NoticeType.COMMENT);
+                break;
+            case "REPLY":
+                notice.setNoticeType(NoticeType.REPLY);
+                break;
+            case "FOLLOW":
+                notice.setNoticeType(NoticeType.FOLLOW);
+                break;
+            case "MESSAGE":
+                notice.setNoticeType(NoticeType.MESSAGE);
+                break;
+        }
+        NoticeQueue.instance.enQueue(notice);
+        return "success";
+    }
 
     @GetMapping(value ="/getusername")
     public String getUsername(){
@@ -28,12 +66,24 @@ public class UserControllerAPI {
     }
 
     @RequestMapping(value = "/getfriends/{myid}")
-    public List<UserInfo> getFriends(@PathVariable(value = "myid") Long myid) {
+    public List<Users> getFriends(@PathVariable(value = "myid") Long myid) {
         return userService.getAllFriendsByMasterId(myid);
     }
+    @RequestMapping(value = "/searchfriends/{key}")
+    public List<Users> searchFriends(@PathVariable(value = "key") String key) {
+        String uname = (String) SecurityContextHolder.getContext().getAuthentication().getName();
+        Users user = userService.getUser(uname);
+        List<Users> results = new ArrayList<>();
+        for (Users u : userService.getAllFriendsByMasterId(user.getId())) {
+            if (u.getUserInfo().getNickName().contains(key)||u.getUsername().contains(key)||u.getUserInfo().getEmail().contains(key)) {
+                results.add(u);
+            }
+        }
+        return results;
+    }
     @RequestMapping(value = "/getfriends")
-    public List<UserInfo> getFriends(@RequestBody UserInfo user) {
-        return userService.getAllFriendsByMasterId(user.getUser().getId());
+    public List<Users> getFriends(@RequestBody Users user) {
+        return userService.getAllFriendsByMasterId(user.getId());
     }
 
 //    @RequestMapping(value = "/getUSRolesByRoleId/{roleId}", method = RequestMethod.POST)

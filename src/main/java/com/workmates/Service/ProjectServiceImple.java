@@ -20,6 +20,8 @@ public class ProjectServiceImple implements ProjectService {
     private StepRepository stepRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private LeaderCheckRepository leaderCheckRepository;
 
     @Override        //根据用户id查询用户主导的项目
     public List<Project> findMasterProjectsById(Long uid) {
@@ -57,7 +59,7 @@ public class ProjectServiceImple implements ProjectService {
 
     @Override       //根据项目id查询步骤信息
     public List<Step> findStepsByPid(Integer pid) {
-        return stepRepository.findStepsByPId(pid);
+        return null;
     }
 
     @Override        //根据项目id查询项目信息
@@ -80,4 +82,8 @@ public class ProjectServiceImple implements ProjectService {
         projectRepository.delete(id);
     }
 
+    @Override
+    public List<LeaderCheck> getLeaderCheck(Users receiver) {
+        return leaderCheckRepository.findByReceiver(receiver);
+    }
 }

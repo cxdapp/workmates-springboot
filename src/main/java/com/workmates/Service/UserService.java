@@ -13,7 +13,7 @@ public interface UserService {
     void save(Users users);
     void save(UserInfo userInfo);
 
-    List<UserInfo> getAllFriendsByMasterId(Long masterId);
+    List<Users> getAllFriendsByMasterId(Long masterId);
 
     Role getRole(String id);
     void addUSRoles(USRoles2 usRoles2);

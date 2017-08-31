@@ -1,30 +1,16 @@
 ﻿<!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:v-on="http://www.w3.org/1999/xhtml"
+      xmlns:v-bind="http://www.w3.org/1999/xhtml">
     <head>
         <title>Dashboard | Workmates</title>
         <th:block th:include="fragments/headerinc :: head"></th:block>
         <!-- Code Highlighter for Demo -->
-        <link href="assets/libs/prettify/github.css" rel="stylesheet" />
+        <link href="../static/assets/libs/prettify/github.css" th:href="@{~/assets/libs/prettify/github.css}" rel="stylesheet" />
         
                 <!-- Extra CSS Libraries Start -->
-                <link href="assets/libs/rickshaw/rickshaw.min.css" rel="stylesheet" type="text/css" />
-                <link href="assets/libs/morrischart/morris.css" rel="stylesheet" type="text/css" />
-                <link href="assets/libs/jquery-jvectormap/css/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
-                <link href="assets/libs/jquery-clock/clock.css" rel="stylesheet" type="text/css" />
-                <link href="assets/libs/bootstrap-calendar/css/bic_calendar.css" rel="stylesheet" type="text/css" />
-                <link href="assets/libs/sortable/sortable-theme-bootstrap.css" rel="stylesheet" type="text/css" />
-                <link href="assets/libs/jquery-weather/simpleweather.css" rel="stylesheet" type="text/css" />
-                <link href="assets/libs/bootstrap-xeditable/css/bootstrap-editable.css" rel="stylesheet" type="text/css" />
-                <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+                <link th:href="@{~/assets/css/style.css}" href="../static/assets/css/style.css" rel="stylesheet" type="text/css" />
                 <!-- Extra CSS Libraries End -->
-        <link href="assets/css/style-responsive.css" rel="stylesheet" />
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
+        <link th:href="@{~/assets/css/style-responsive.css}" href="../static/assets/css/style-responsive.css" rel="stylesheet" />
 
     </head>
     <body class="fixed-left">
@@ -124,33 +110,95 @@
                                     </tr>
                                     </thead>
 
-                                    <tbody>
-                                    <tr v-for="i in 10">
-                                        <td>{{i}}</td>
-                                        <td><input type="checkbox" class="rows-check" /></td>
-                                        <td><strong>John Doe</strong></td>
-                                        <td>Yogyakarta, Indonesia</td>
-                                        <td>Yogyakarta, Indonesia</td>
-                                        <td><button class="btn btn-success">Contact</button></td>
-                                        <td>Yogyakarta, Indonesia</td>
-                                        <td><span class="label label-success">Active</span></td>
-                                    </tr>
+                                    <tbody v-for="(item,i) in checkList" style="border-bottom: hidden">
+                                        <tr class="accordion-toggle " id="accordiondemo" data-toggle="collapse" data-parent="#accordiondemo" v-bind:href="'#accordion'+i" >
+                                            <td>{{i}}</td>
+                                            <td><input type="checkbox" class="rows-check" /></td>
+                                            <td><strong>{{item.pusher.username}}</strong></td>
+                                            <td>{{item.pushType}}</td>
+                                            <td>{{item.pushTime}}</td>
+                                            <td><button class="btn btn-success">Contact</button></td>
+                                            <td>{{item.remarks}}</td>
+                                            <td v-show="item.status===0"><span class="label label-warning">未审核</span></td>
+                                            <td v-show="item.status===1"><span class="label label-danger">驳回</span></td>
+                                            <td v-show="item.status===2"><span class="label label-success">通过</span></td>
+                                        </tr>
+                                        <tr >
+                                            <td colspan="8">
+                                                <div v-bind:id="'accordion'+i" class="panel-collapse collapse" >
+                                                    <div class="panel-body">
+                                                        <h4>提交文件</h4>
+                                                        <div class="padding">
+                                                            <ul class="list-unstyled project_files">
+                                                                <li v-for="file in fileList">
+                                                                    <div  class="gallery-wrap" v-if="file.tag=='text'">
+                                                                        <div class="column">
+                                                                            <div class="inner">
+
+                                                                                <a  class="zooming" href="../static/images/big/img001.jpg" v-bind:title="file.name">
+                                                                                    <i class="fa fa-picture-o"></i>
+                                                                                    {{file.name}}{{file.type}}
+                                                                                    <!--<img src="../static/images/small/img001_small.jpg" alt="Image gallery" title="Image title here" class="mfp-fade">-->
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <a v-if="file.tag=='img'" href="" class="zooming" data-toggle="modal" data-target="#myModal" v-bind:title="file.name">
+                                                                        <i class="fa fa-file-word-o"></i>
+                                                                        {{file.name}}{{file.type}}
+                                                                    </a>
+
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel">Modal Heading</h4>
+                            </div>
+                            <div class="modal-body">
+                                <h4>Text in a modal</h4>
+                                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+
+                                <hr>
+
+                                <h4>Overflowing text to show scroll behavior</h4>
+                                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                                <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                                <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                                <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+                                <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
             </div>
 
 
             <!-- Footer Start -->
-            <footer>
-                Huban Creative &copy; 2014
-                <div class="footer-links pull-right">
-                    <a href="#">About</a><a href="#">Support</a><a href="#">Terms of Service</a><a href="#">Legal</a><a href="#">Help</a><a href="#">Contact Us</a>
-                </div>
-            </footer>
+
             <!-- Footer End -->
         </div>
         <!-- End right content -->
@@ -160,8 +208,39 @@
 	<!-- Page Specific JS Libraries -->
         <script>
             new Vue({
-                el:"#content"
+                el:"#content",
+                data:{
+                    checkList:[],
+                    fileList:[
+                        {
+                            name:'Functional-requirements',type:'.docx',tag:'text'
+                        },
+                        {
+                            name:'UAT',type:'.txt',tag:'text'
+                        },
+                        {
+                            name:'Email-from-flatbal',type:'.png',tag:'img'
+                        },
+                        {
+                            name:'Contract-10_12_2014',type:'.jpg',tag:'img'
+                        }
+                    ]
+                },
+                mounted:function () {
+                    axios.get('/papi/leader_check?access_token='+getCookie('access_token'))
+                        .then(function (res) {
+                            this.checkList = res.data;
+                        }.bind(this))
+                        .catch(function (res) {
+                            console.log(res.data);
+                            console.log(res.message);
+                        }.bind(this))
+                },
+                method:{
+
+                }
             })
         </script>
-	</body>
+        <script th:src="@{~/assets/js/pages/tabs-accordions.js}" src="../static/assets/js/pages/tabs-accordions.js"></script>
+    </body>
 </html>

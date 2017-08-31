@@ -1,0 +1,64 @@
+2017-08-31 10:08:50,412  INFO SpringbootApplication:48 ---- Starting SpringbootApplication on DESKTOP-8T5TC0V with PID 4628 (A:\CODE\workmates_springboot\target\classes started by jasonchen in A:\CODE\workmates_springboot)
+2017-08-31 10:08:50,624 DEBUG SpringbootApplication:51 ---- Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2017-08-31 10:08:50,625  INFO SpringbootApplication:593 ---- No active profile set, falling back to default profiles: default
+2017-08-31 10:09:54,156  INFO SpringbootApplication:57 ---- Started SpringbootApplication in 69.374 seconds (JVM running for 79.163)
+2017-08-31 12:00:32,977  INFO SpringbootApplication:48 ---- Starting SpringbootApplication on DESKTOP-8T5TC0V with PID 20700 (A:\CODE\workmates_springboot\target\classes started by jasonchen in A:\CODE\workmates_springboot)
+2017-08-31 12:00:32,980 DEBUG SpringbootApplication:51 ---- Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2017-08-31 12:00:32,981  INFO SpringbootApplication:593 ---- No active profile set, falling back to default profiles: default
+2017-08-31 12:00:45,036  INFO SpringbootApplication:57 ---- Started SpringbootApplication in 12.33 seconds (JVM running for 13.049)
+2017-08-31 12:22:45,525  INFO SpringbootApplication:48 ---- Starting SpringbootApplication on DESKTOP-8T5TC0V with PID 22060 (A:\CODE\workmates_springboot\target\classes started by jasonchen in A:\CODE\workmates_springboot)
+2017-08-31 12:22:45,529 DEBUG SpringbootApplication:51 ---- Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2017-08-31 12:22:45,530  INFO SpringbootApplication:593 ---- No active profile set, falling back to default profiles: default
+2017-08-31 12:22:56,902  INFO SpringbootApplication:57 ---- Started SpringbootApplication in 11.764 seconds (JVM running for 12.661)
+2017-08-31 13:10:57,841  INFO SpringbootApplication:48 ---- Starting SpringbootApplication on DESKTOP-8T5TC0V with PID 16600 (A:\CODE\workmates_springboot\target\classes started by jasonchen in A:\CODE\workmates_springboot)
+2017-08-31 13:10:57,845 DEBUG SpringbootApplication:51 ---- Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2017-08-31 13:10:57,847  INFO SpringbootApplication:593 ---- No active profile set, falling back to default profiles: default
+2017-08-31 13:11:10,931  INFO SpringbootApplication:57 ---- Started SpringbootApplication in 13.498 seconds (JVM running for 14.545)
+2017-08-31 14:36:33,239  INFO SpringbootApplication:48 ---- Starting SpringbootApplication on DESKTOP-8T5TC0V with PID 24916 (A:\CODE\workmates_springboot\target\classes started by jasonchen in A:\CODE\workmates_springboot)
+2017-08-31 14:36:33,244 DEBUG SpringbootApplication:51 ---- Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2017-08-31 14:36:33,245  INFO SpringbootApplication:593 ---- No active profile set, falling back to default profiles: default
+2017-08-31 14:36:44,933  INFO SpringbootApplication:57 ---- Started SpringbootApplication in 11.976 seconds (JVM running for 12.458)
+2017-08-31 14:47:19,808  INFO SpringbootApplication:48 ---- Starting SpringbootApplication on DESKTOP-8T5TC0V with PID 21812 (A:\CODE\workmates_springboot\target\classes started by jasonchen in A:\CODE\workmates_springboot)
+2017-08-31 14:47:19,811 DEBUG SpringbootApplication:51 ---- Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2017-08-31 14:47:19,812  INFO SpringbootApplication:593 ---- No active profile set, falling back to default profiles: default
+2017-08-31 14:47:33,410  INFO SpringbootApplication:57 ---- Started SpringbootApplication in 13.982 seconds (JVM running for 14.646)
+2017-08-31 14:55:04,243  INFO SpringbootApplication:48 ---- Starting SpringbootApplication on DESKTOP-8T5TC0V with PID 27868 (A:\CODE\workmates_springboot\target\classes started by jasonchen in A:\CODE\workmates_springboot)
+2017-08-31 14:55:04,246 DEBUG SpringbootApplication:51 ---- Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2017-08-31 14:55:04,247  INFO SpringbootApplication:593 ---- No active profile set, falling back to default profiles: default
+2017-08-31 14:55:12,948  INFO SpringbootApplication:57 ---- Started SpringbootApplication in 9.004 seconds (JVM running for 10.013)
+2017-08-31 14:57:30,196  INFO SpringbootApplication:48 ---- Starting SpringbootApplication on DESKTOP-8T5TC0V with PID 26800 (A:\CODE\workmates_springboot\target\classes started by jasonchen in A:\CODE\workmates_springboot)
+2017-08-31 14:57:30,205 DEBUG SpringbootApplication:51 ---- Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2017-08-31 14:57:30,211  INFO SpringbootApplication:593 ---- No active profile set, falling back to default profiles: default
+2017-08-31 14:57:41,735  INFO SpringbootApplication:57 ---- Started SpringbootApplication in 12.014 seconds (JVM running for 12.835)
+2017-08-31 14:58:13,486  INFO SpringbootApplication:48 ---- Starting SpringbootApplication on DESKTOP-8T5TC0V with PID 8852 (A:\CODE\workmates_springboot\target\classes started by jasonchen in A:\CODE\workmates_springboot)
+2017-08-31 14:58:13,489 DEBUG SpringbootApplication:51 ---- Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2017-08-31 14:58:13,514  INFO SpringbootApplication:593 ---- No active profile set, falling back to default profiles: default
+2017-08-31 14:58:26,009  INFO SpringbootApplication:57 ---- Started SpringbootApplication in 12.946 seconds (JVM running for 14.357)
+2017-08-31 15:01:03,237  INFO SpringbootApplication:48 ---- Starting SpringbootApplication on DESKTOP-8T5TC0V with PID 29264 (A:\CODE\workmates_springboot\target\classes started by jasonchen in A:\CODE\workmates_springboot)
+2017-08-31 15:01:03,240 DEBUG SpringbootApplication:51 ---- Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2017-08-31 15:01:03,241  INFO SpringbootApplication:593 ---- No active profile set, falling back to default profiles: default
+2017-08-31 15:01:15,341  INFO SpringbootApplication:57 ---- Started SpringbootApplication in 12.421 seconds (JVM running for 13.626)
+2017-08-31 15:15:56,034  INFO SpringbootApplication:48 ---- Starting SpringbootApplication on DESKTOP-8T5TC0V with PID 29556 (A:\CODE\workmates_springboot\target\classes started by jasonchen in A:\CODE\workmates_springboot)
+2017-08-31 15:15:56,041 DEBUG SpringbootApplication:51 ---- Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2017-08-31 15:15:56,042  INFO SpringbootApplication:593 ---- No active profile set, falling back to default profiles: default
+2017-08-31 15:16:07,771  INFO SpringbootApplication:57 ---- Started SpringbootApplication in 12.128 seconds (JVM running for 13.272)
+2017-08-31 15:17:26,321  INFO SpringbootApplication:48 ---- Starting SpringbootApplication on DESKTOP-8T5TC0V with PID 25244 (A:\CODE\workmates_springboot\target\classes started by jasonchen in A:\CODE\workmates_springboot)
+2017-08-31 15:17:26,324 DEBUG SpringbootApplication:51 ---- Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2017-08-31 15:17:26,325  INFO SpringbootApplication:593 ---- No active profile set, falling back to default profiles: default
+2017-08-31 15:17:36,948  INFO SpringbootApplication:57 ---- Started SpringbootApplication in 10.979 seconds (JVM running for 12.112)
+2017-08-31 15:20:42,463  INFO SpringbootApplication:48 ---- Starting SpringbootApplication on DESKTOP-8T5TC0V with PID 4688 (A:\CODE\workmates_springboot\target\classes started by jasonchen in A:\CODE\workmates_springboot)
+2017-08-31 15:20:42,466 DEBUG SpringbootApplication:51 ---- Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2017-08-31 15:20:42,467  INFO SpringbootApplication:593 ---- No active profile set, falling back to default profiles: default
+2017-08-31 15:20:52,051  INFO SpringbootApplication:57 ---- Started SpringbootApplication in 9.892 seconds (JVM running for 11.434)
+2017-08-31 15:23:09,529  INFO SpringbootApplication:48 ---- Starting SpringbootApplication on DESKTOP-8T5TC0V with PID 29648 (A:\CODE\workmates_springboot\target\classes started by jasonchen in A:\CODE\workmates_springboot)
+2017-08-31 15:23:09,531 DEBUG SpringbootApplication:51 ---- Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2017-08-31 15:23:09,532  INFO SpringbootApplication:593 ---- No active profile set, falling back to default profiles: default
+2017-08-31 15:23:18,863  INFO SpringbootApplication:57 ---- Started SpringbootApplication in 9.641 seconds (JVM running for 11.496)
+2017-08-31 15:24:20,890  INFO SpringbootApplication:48 ---- Starting SpringbootApplication on DESKTOP-8T5TC0V with PID 24700 (A:\CODE\workmates_springboot\target\classes started by jasonchen in A:\CODE\workmates_springboot)
+2017-08-31 15:24:20,893 DEBUG SpringbootApplication:51 ---- Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2017-08-31 15:24:20,894  INFO SpringbootApplication:593 ---- No active profile set, falling back to default profiles: default
+2017-08-31 15:24:30,723  INFO SpringbootApplication:57 ---- Started SpringbootApplication in 10.075 seconds (JVM running for 11.0)
+2017-08-31 16:08:42,611  INFO SpringbootApplication:48 ---- Starting SpringbootApplication on DESKTOP-8T5TC0V with PID 35624 (A:\CODE\workmates_springboot\target\classes started by jasonchen in A:\CODE\workmates_springboot)
+2017-08-31 16:08:42,614 DEBUG SpringbootApplication:51 ---- Running with Spring Boot v1.5.4.RELEASE, Spring v4.3.9.RELEASE
+2017-08-31 16:08:42,616  INFO SpringbootApplication:593 ---- No active profile set, falling back to default profiles: default
+2017-08-31 16:08:57,046  INFO SpringbootApplication:57 ---- Started SpringbootApplication in 14.778 seconds (JVM running for 15.893)

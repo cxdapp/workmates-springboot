@@ -1,15 +1,30 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head lang="en">
-
+    <style>
+        .dropdown-menu.grid-dropdown a:hover {
+            color: #fff;
+            background: #777e7e;
+            cursor: pointer;
+        }
+        .navbar-nav > li > .dropdown-menu.grid-dropdown a:hover i{
+            color:#fff;
+            cursor: pointer;
+        }
+        .navbar-nav > li > .dropdown-menu.grid-dropdown a:hover .my{
+            color:#fff;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
+<div id="head_wrapper">
     <!-- Top Bar Start -->
-    <div th:fragment="topbar">
+    <div th:fragment="topbar" id="topbar">
     <div class="topbar">
         <div class="topbar-left">
             <div class="logo">
-                <h1><a href="#"><img src="../../static/assets/img/logo.png" th:src="@{~/assets/img/logo.png}" alt="Logo"/></a></h1>
+                <h1><a href="#"><img src="../static/assets/img/logo.png" th:src="@{~/assets/img/logo.png}" alt="Logo"/></a></h1>
             </div>
             <button class="button-menu-mobile open-left">
                 <i class="fa fa-bars"></i>
@@ -25,27 +40,11 @@
                             <div class="dropdown-menu grid-dropdown">
                                 <div class="row stacked">
                                     <div class="col-xs-4">
-                                        <a href="javascript:;" data-app="notes-app" data-status="inactive"><i class="icon-edit"></i>Notes</a>
+                                        <a href="/attend" data-status="inactive"><i class="fa fa-calculator"></i><span class="my">所有项目</span></a>
                                     </div>
-                                    <div class="col-xs-4">
-                                        <a href="javascript:;" data-app="todo-app" data-status="inactive"><i class="icon-check"></i>Todo List</a>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <a href="javascript:;" data-app="calc" data-status="inactive"><i class="fa fa-calculator"></i>所有项目</a>
-                                    </div>
+
                                 </div>
-                                <div class="row stacked">
-                                    <div class="col-xs-4">
-                                        <a href="javascript:;" data-app="weather-widget" data-status="active"><i class="icon-cloud-3"></i>Weather</a>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <a href="javascript:;" data-app="calendar-widget2" data-status="active"><i class="icon-calendar"></i>Calendar</a>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <a href="javascript:;" data-app="stock-app" data-status="inactive"><i class="icon-chart-line"></i>Stocks</a>
-                                    </div>
-                                </div>
-                                <div class="clearfix"></div>
+
                             </div>
                         </li>
 
@@ -122,15 +121,13 @@
                         </li>
                         <li class="dropdown iconify hide-phone"><a href="#" onclick="javascript:toggle_fullscreen()"><i class="icon-resize-full-2"></i></a></li>
                         <li class="dropdown topbar-profile">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="rounded-image topbar-profile-image"><img src="../../static/img/user.jpg" th:src="@{~/img/user.jpg}"/></span>  <strong id="myname" v-text="username" >游客</strong> <i class="fa fa-caret-down"></i></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="rounded-image topbar-profile-image"><img src="../static/img/user.jpg" th:src="@{~/img/user.jpg}"/></span>  <strong id="myname" v-text="username" >游客</strong> <i class="fa fa-caret-down"></i></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/u/projects/create">新建项目</a></li>
-                                <li><a href="#">Change Password</a></li>
-                                <li><a href="#">Account Setting</a></li>
+                                <li><a v-bind:href="'/user/'+username">个人中心</a></li>
+                                <li><a href="/user/settings">设置</a></li>
                                 <li class="divider"></li>
-                                <li><a href="#"><i class="icon-help-2"></i> Help</a></li>
-                                <li><a href="lockscreen"><i class="icon-lock-1"></i> Lock me</a></li>
-                                <li><a class="md-trigger" data-modal="logout-modal"><i class="icon-logout-1"></i> Logout</a></li>
+                                <li><a href="/logout" class="md-trigger" data-modal="logout-modal"><i class="icon-logout-1"></i> 退出</a></li>
                             </ul>
                         </li>
 
@@ -140,6 +137,14 @@
             </div>
         </div>
     </div>
+        <script type="text/javascript">
+            //<![CDATA[
+
+
+            var resizefunc = [];
+
+            //]]>
+        </script>
     </div>
     <!-- Top Bar End -->
 
@@ -158,7 +163,7 @@
             <!--- Profile -->
             <div class="profile-info">
                 <div class="col-xs-4">
-                    <a href="/personal" class="rounded-image profile-image"><img src="../../static/img/user.jpg" th:src="@{~/img/user.jpg}"/></a>
+                    <a href="/personal" class="rounded-image profile-image"><img src="../static/img/user.jpg" th:src="@{~/img/user.jpg}"/></a>
                 </div>
                 <div class="col-xs-8">
                     <div class="profile-text">Welcome <b>Workmates</b></div>
@@ -265,89 +270,89 @@
     </div>
     <!-- Left Sidebar End -->
 
+</div>
+
     <div th:fragment="footer">
         <!-- the overlay modal element -->
         <div class="md-overlay"></div>
         <!-- End of eoverlay modal -->
-        <script>
-            var resizefunc = [];
-        </script>
+
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="../../static/assets/libs/jquery/jquery-1.11.1.min.js"
+        <script src="../static/assets/libs/jquery/jquery-1.11.1.min.js"
                 th:src="@{/webjars/jquery/3.2.1/dist/jquery.min.js}"
         ></script>
-        <script src="../../static/assets/libs/bootstrap/js/bootstrap.min.js"
+        <script src="../static/assets/libs/bootstrap/js/bootstrap.min.js"
                 th:src="@{/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js}"
         ></script>
-        <script src="../../static/assets/libs/jqueryui/jquery-ui-1.10.4.custom.min.js"
+        <script src="../static/assets/libs/jqueryui/jquery-ui-1.10.4.custom.min.js"
                 th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.js}"
         ></script>
-        <script src="../../static/assets/libs/jquery-ui-touch/jquery.ui.touch-punch.min.js"
+        <script src="../static/assets/libs/jquery-ui-touch/jquery.ui.touch-punch.min.js"
                 th:src="@{~/assets/libs/jquery-ui-touch/jquery.ui.touch-punch.min.js}"
         ></script>
-        <script src="../../static/assets/libs/jquery-detectmobile/detect.js"
+        <script src="../static/assets/libs/jquery-detectmobile/detect.js"
                 th:src="@{~/assets/libs/jquery-detectmobile/detect.js}"
         ></script>
-        <script src="../../static/assets/libs/jquery-animate-numbers/jquery.animateNumbers.js"
+        <script src="../static/assets/libs/jquery-animate-numbers/jquery.animateNumbers.js"
                 th:src="@{~/assets/libs/jquery-animate-numbers/jquery.animateNumbers.js}"
         ></script>
-        <script src="../../static/assets/libs/ios7-switch/ios7.switch.js"
+        <script src="../static/assets/libs/ios7-switch/ios7.switch.js"
                 th:src="@{~/assets/libs/ios7-switch/ios7.switch.js}"
         ></script>
-        <script src="../../static/assets/libs/fastclick/fastclick.js"
+        <script src="../static/assets/libs/fastclick/fastclick.js"
                 th:src="@{/webjars/fastclick/1.0.6/lib/fastclick.js}"
         ></script>
-        <script src="../../static/assets/libs/jquery-blockui/jquery.blockUI.js"
+        <script src="../static/assets/libs/jquery-blockui/jquery.blockUI.js"
                 th:src="@{/webjars/jquery-blockui/2.65/jquery.blockUI.js}"
         ></script>
-        <script src="../../static/assets/libs/bootstrap-bootbox/bootbox.min.js"
+        <script src="../static/assets/libs/bootstrap-bootbox/bootbox.min.js"
                 th:src="@{~/assets/libs/bootstrap-bootbox/bootbox.min.js}"
         ></script>
-        <script src="../../static/assets/libs/jquery-slimscroll/jquery.slimscroll.js"
+        <script src="../static/assets/libs/jquery-slimscroll/jquery.slimscroll.js"
                 th:src="@{~/assets/libs/jquery-slimscroll/jquery.slimscroll.js}"
         ></script>
-        <script src="../../static/assets/libs/jquery-sparkline/jquery-sparkline.js"
+        <script src="../static/assets/libs/jquery-sparkline/jquery-sparkline.js"
                 th:src="@{~/assets/libs/jquery-sparkline/jquery-sparkline.js}"
         ></script>
-        <script src="../../static/assets/libs/nifty-modal/js/classie.js"
+        <script src="../static/assets/libs/nifty-modal/js/classie.js"
                 th:src="@{~/assets/libs/nifty-modal/js/classie.js}"
         ></script>
-        <script src="../../static/assets/libs/nifty-modal/js/modalEffects.js"
+        <script src="../static/assets/libs/nifty-modal/js/modalEffects.js"
                 th:src="@{~/assets/libs/nifty-modal/js/modalEffects.js}"
         ></script>
-        <script src="../../static/assets/libs/sortable/sortable.min.js"
+        <script src="../static/assets/libs/sortable/sortable.min.js"
                 th:src="@{~/assets/libs/sortable/sortable.min.js}"
         ></script>
-        <script src="../../static/assets/libs/bootstrap-fileinput/bootstrap.file-input.js"
+        <script src="../static/assets/libs/bootstrap-fileinput/bootstrap.file-input.js"
                 th:src="@{~/assets/libs/bootstrap-fileinput/bootstrap.file-input.js}"
         ></script>
-        <script src="../../static/assets/libs/bootstrap-select/bootstrap-select.min.js"
+        <script src="../static/assets/libs/bootstrap-select/bootstrap-select.min.js"
                 th:src="@{~/assets/libs/bootstrap-select/bootstrap-select.min.js}"
         ></script>
-        <script src="../../static/assets/libs/bootstrap-select2/select2.min.js"
+        <script src="../static/assets/libs/bootstrap-select2/select2.min.js"
                 th:src="@{~/assets/libs/bootstrap-select2/select2.min.js}"
         ></script>
-        <script src="../../static/assets/libs/magnific-popup/jquery.magnific-popup.min.js"
+        <script src="../static/assets/libs/magnific-popup/jquery.magnific-popup.min.js"
                 th:src="@{~/assets/libs/magnific-popup/jquery.magnific-popup.min.js}"
         ></script>
-        <script src="../../static/assets/libs/pace/pace.min.js"
+        <script src="../static/assets/libs/pace/pace.min.js"
                 th:src="@{/webjars/pace/1.0.2/pace.min.js}"
         ></script>
-        <script src="../../static/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.js"
+        <script src="../static/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.js"
                 th:src="@{/webjars/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js}"
         ></script>
-        <script src="../../static/assets/libs/jquery-icheck/icheck.min.js"
+        <script src="../static/assets/libs/jquery-icheck/icheck.min.js"
                 th:src="@{~/assets/libs/jquery-icheck/icheck.min.js}"
         ></script>
 
         <!-- Demo Specific JS Libraries -->
-        <script src="../../static/assets/libs/prettify/prettify.js"
+        <script src="../static/assets/libs/prettify/prettify.js"
                 th:src="@{~/assets/libs/prettify/prettify.js}"
         ></script>
-        <script src="../../static/assets/js/init.js"
+        <script src="../static/assets/js/init.js"
                 th:src="@{~/assets/js/init.js}"
         ></script>
-        <script src="../../static/js/script.js"
+        <script src="../static/js/script.js"
                 th:src="@{~/js/script.js}"
         ></script>
 

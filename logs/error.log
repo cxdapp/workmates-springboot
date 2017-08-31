@@ -1,0 +1,12 @@
+2017-08-31 14:02:29,966 ERROR TemplateEngine:1085 - [THYMELEAF][http-nio-8080-exec-8] Exception processing template "personal": Exception evaluating SpringEL expression: "user.username" (personal)
+2017-08-31 14:02:30,059 ERROR TemplateEngine:1085 - [THYMELEAF][http-nio-8080-exec-8] Exception processing template "error": Exception evaluating SpringEL expression: "exception.message" (error)
+2017-08-31 14:14:06,656 ERROR TemplateEngine:1085 - [THYMELEAF][http-nio-8080-exec-8] Exception processing template "lockscreen": Error resolving template "lockscreen", template might not exist or might not be accessible by any of the configured Template Resolvers
+2017-08-31 14:14:06,675 ERROR TemplateEngine:1085 - [THYMELEAF][http-nio-8080-exec-8] Exception processing template "error": Exception evaluating SpringEL expression: "exception.message" (error)
+2017-08-31 14:15:31,873 ERROR TemplateEngine:1085 - [THYMELEAF][http-nio-8080-exec-6] Exception processing template "personal": Exception evaluating SpringEL expression: "user.username" (personal)
+2017-08-31 14:15:31,887 ERROR TemplateEngine:1085 - [THYMELEAF][http-nio-8080-exec-6] Exception processing template "error": Exception evaluating SpringEL expression: "exception.message" (error)
+2017-08-31 14:37:37,796 ERROR TemplateEngine:1085 - [THYMELEAF][http-nio-8080-exec-4] Exception processing template "/personal": Exception evaluating SpringEL expression: "user.username" (/personal)
+2017-08-31 14:37:37,821 ERROR TemplateEngine:1085 - [THYMELEAF][http-nio-8080-exec-4] Exception processing template "error": Exception evaluating SpringEL expression: "exception.message" (error)
+2017-08-31 16:19:43,940 ERROR TemplateEngine:1085 - [THYMELEAF][http-nio-8080-exec-10] Exception processing template "/personal": Exception evaluating SpringEL expression: "user.username" (/personal)
+2017-08-31 16:19:43,963 ERROR TemplateEngine:1085 - [THYMELEAF][http-nio-8080-exec-10] Exception processing template "error": Exception evaluating SpringEL expression: "exception.message" (error)
+2017-08-31 16:19:47,096 ERROR TemplateEngine:1085 - [THYMELEAF][http-nio-8080-exec-5] Exception processing template "/personal": Exception evaluating SpringEL expression: "user.username" (/personal)
+2017-08-31 16:19:47,104 ERROR TemplateEngine:1085 - [THYMELEAF][http-nio-8080-exec-5] Exception processing template "error": Exception evaluating SpringEL expression: "exception.message" (error)

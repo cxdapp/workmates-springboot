@@ -1,3 +1,13 @@
+$(document).ready(function(){
+    axios.get('/api/getusername?access_token='+getCookie('access_token'))
+        .then(function (res) {
+            document.getElementById("myname").innerText(res.data);
+        })
+        .catch(function (res) {
+
+        });
+});
+
 function getCookie(name) {
     var value = "; " + document.cookie;
     var parts = value.split("; " + name + "=");
