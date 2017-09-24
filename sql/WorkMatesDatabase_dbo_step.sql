@@ -1,2 +1,0 @@
-INSERT INTO WorkMatesDatabase.dbo.step (deadline_hours, p_id, step_content, step_title, s_id) VALUES (6, 1, '编写博客用户需求文档', '需求文档', 2);
-INSERT INTO WorkMatesDatabase.dbo.step (deadline_hours, p_id, step_content, step_title, s_id) VALUES (10, 1, '制作问卷，参加市场调研', '市场调研', 1);

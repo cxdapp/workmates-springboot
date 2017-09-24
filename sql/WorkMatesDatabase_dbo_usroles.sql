@@ -1,2 +1,0 @@
-INSERT INTO WorkMatesDatabase.dbo.usroles (completeness, role_id, step_id, u_id) VALUES ('50', 2, 1, 1);
-INSERT INTO WorkMatesDatabase.dbo.usroles (completeness, role_id, step_id, u_id) VALUES ('60', 2, 2, 2);
